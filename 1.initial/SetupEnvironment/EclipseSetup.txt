@@ -1,0 +1,98 @@
+Link: http://ubuntuhandbook.org/index.php/2016/01/how-to-install-the-latest-eclipse-in-ubuntu-16-04-15-10/
+1. Install Java.
+2. Download Eclipse from its websit:
+http://www.eclipse.org/downloads/
+3. Run the installer wizard.
+Unzip and right-click on file eclipse-inst and select Run.
+4. Create a launcher shortcut.
+gedit .local/share/applications/eclipse.desktop
+
+[Desktop Entry]
+Name=Eclipse
+Type=Application
+Exec=/home/USERNAME/java-mars/eclipse/eclipse
+Terminal=false
+Icon=/home/USERNAME/java-mars/eclipse/icon.xpm
+Comment=Integrated Development Environment
+NoDisplay=false
+Categories=Development;IDE;
+Name[en]=Eclipse
+
+
+
+Error:
+1/. JVM terminated. Exit code=1 /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+==>> Link: http://stackoverflow.com/questions/26736164/eclipse-does-not-launch-ubuntu-jvm-terminated-exit-code-2
+First, I strongly recommend you use the webupd8 ppa
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+sudo update-alternatives --config java
+Choose "ocracle8".
+sudo nano /etc/environment
+Then to set it
+Restart computer.
+
+The problem was that whenever navigating to any workitem on RTC, that error occurred and eclipse crashed. Basically the UI did not appear or half appeared. This was solved by adding the following to the last line in eclipse.ini:
+
+-Dorg.eclipse.swt.internal.gtk.cairoGraphics=false
+
+
+sudo update-java-alternatives -s java-8-oracle 
+The advantage is ease of updates.
+
+
+
+* To uninstall OpenJDK (if installed). First check which OpenJDK packages are installed.
+
+sudo dpkg --list | grep -i jdk
+To remove openjdk:
+
+sudo apt-get purge openjdk*
+Uninstall OpenJDK related packages.
+
+sudo apt-get purge icedtea-* openjdk-*
+Check that all OpenJDK packages have been removed.
+
+sudo dpkg --list | grep -i jdk
+
+* Check jdk
+sudo update-alternatives --config java
+
+* Install ocracle jdk 8
+Link: http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+
+Set default:
+sudo apt-get install oracle-java8-set-default
+
+Unset default:
+sudo apt-get install --no-install-recommends oracle-java8-installer
+
+$ java -version
+$ javac -version
+
+Accept ocracle license:
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+
+Error2/. An internal error occurred during: "Initializing Java Tooling". java.lang.NullPointerException
+Link: http://stackoverflow.com/questions/10892790/eclipse-internal-error-while-initializing-java-tooling
+==>>
+Close Eclipse.
+Go to workspace folder in windows explorer and delete following folders:
+.metadata
+.recommenders
+RemoteSystemsTempFiles
+Servers
+Open Eclipse and provide the same workspace folder again during launch.
+
+/*
+Link: https://www.howtoinstall.co/en/ubuntu/xenial/eclipse
+sudo apt-get update
+sudo apt-get install eclipse
+*/

@@ -1,0 +1,72 @@
+package com.redsun.service.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.redsun.service.entities.Payments;
+import com.redsun.service.service.PaymentsService;
+import com.redsun.service.validation.PaymentsValidator;
+
+/**
+ * Payments Controller
+ */
+@RestController
+@RequestMapping("payments-service")
+public class PaymentsController {
+	
+	// Service.
+	@Autowired
+	PaymentsService paymentsService;
+
+	// InitBinder.
+	@InitBinder
+	protected void InitBinder(WebDataBinder binder){
+		binder.setValidator(new PaymentsValidator());
+	}
+
+	// Insert.
+	@RequestMapping(value = "insert", method = { RequestMethod.POST })
+	public Object insert(@Validated @RequestBody Payments payments){
+		return paymentsService.insert(payments);
+	}
+	
+	// Update.
+	@RequestMapping(value = "update/{id}", method = { RequestMethod.PUT })
+	public Object update(@PathVariable("id") Integer id, @RequestBody Payments payments){
+		return paymentsService.update(payments);
+	}
+	
+	// Delete.
+	@RequestMapping(value = "delete/{id}", method = { RequestMethod.DELETE })
+	public Object delete(@PathVariable("id") Integer id){
+		return paymentsService.delete(id);
+	}
+	
+	// Get by Id.
+	@RequestMapping(value = "getbyid/{id}", method = { RequestMethod.GET })
+	public Object getById(@PathVariable("id") Integer id) {
+		return paymentsService.getById(id);
+	}
+	
+	// List for page and filter.
+	@RequestMapping(value = "list/page/filter/{itemsPerPage}/{pageNo}", method = { RequestMethod.POST })
+	public Object listPaymentsForPageAndFilter(@PathVariable("itemsPerPage") int itemsPerPage, @PathVariable("pageNo") int pageNo, @RequestBody Payments payments) {
+		return paymentsService.listPaymentsForPageAndFilter(itemsPerPage, pageNo, payments);
+	}
+	
+	// List extend for page and filter.
+	@RequestMapping(value = "list-extend/page/filter/{itemsPerPage}/{pageNo}", method = { RequestMethod.POST })
+	public Object listPaymentsExtendForPageAndFilter(@PathVariable("itemsPerPage") int itemsPerPage, @PathVariable("pageNo") int pageNo, @RequestBody Map<String, Object> filter) {
+		return paymentsService.listPaymentsExtendForPageAndFilter(itemsPerPage, pageNo, filter);
+	}
+
+}

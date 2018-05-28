@@ -1,0 +1,68 @@
+						<div class="panel-heading clearfix">
+							<input type="text" class="form-control" placeholder="Search" ng-model="searchName"/>
+						</div>
+			  			<div class="panel-body">
+			  				<!-- Import Material -->
+			  				<div class="well">
+			  					
+			  					<ul class="list-inline">
+			  						<li><label class="control-label" for="attachments">{{'report_pm_material_sheet_import_title' | translate}}</label></li>
+			  						<li><input type="file" onchange="angular.element(this).scope().fileMaterialSelected(this)" /></li>
+			  						<li><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="{{'report_pm_material_sheet_import_button' | translate}}" ng-click="importMaterial()" ng-disabled="permission.projectRole.projectPermission.indexOf(3)<0">
+			  							<span class="glyphicon glyphicon-import"></span>
+			  							</button>
+			  						</li>
+			  					</ul>
+			  				</div>
+			  				<p class="text-primary">In Project</p>
+				  			<div class="ms-list"  ng-init = "getProjectMaterials();">
+								<table class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>	
+											<th>Name</th>
+											<th>Unit</th>
+											<th>Net Price</th>
+											<th>Price</th>
+											<th>Quantity</th>
+											<th>Delete</th>
+										</tr>
+									</thead>
+									<tbody>
+									<tr ng-repeat="projectmaterial in projectmaterials | filter:searchName">
+										<td  class = 'totext'>{{projectmaterial.materialName}} <span class="tooltiptext">Description: {{projectmaterial.description}}</span></td>
+										<td class = 'totext'>{{projectmaterial.unit}}</td>
+										<td><input type="text"  class="form-control"  value="{{projectmaterial.netPrice}}" ng-model="projectmaterial.netPrice" />
+										<td><input type="text"  class="form-control"  value="{{projectmaterial.price}}" ng-model="projectmaterial.price" />
+										<td><input type="text"  class="form-control"  value="{{projectmaterial.quantity}}" ng-model="projectmaterial.quantity"/></td>
+										<td><input type="checkbox" id = "check" ng-model="projectmaterial.isSelected"/></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+							<hr>
+							<div class="ms-list"  ng-init = "getFilterMaterial();">
+							<p class="text-primary">Out Project</p>
+								<table class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>	
+											<th>Name</th>
+											<th>Unit</th>
+											<th>Net Price</th>
+											<th>Price</th>
+											<th>Quantity</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="material in materials | filter:searchName">
+											<td>{{material.name}}</td>
+											<td>{{material.unitName}}</td>
+											<td><input type="text"  class="form-control"  value="{{material.netPrice}}" ng-model="material.netPrice" /></td>
+											<td><input type="text"  class="form-control"  value="{{material.price}}" ng-model="material.price" />
+											<td>
+												<input type="number" class="form-control" ng-model="material.quan" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+			  			</div>

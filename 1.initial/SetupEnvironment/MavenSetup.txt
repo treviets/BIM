@@ -1,0 +1,6 @@
+Link: http://howtoprogram.xyz/2016/09/08/install-maven-ubuntu-16-04-lts-xenial-xerus/
+1. Open terminal
+sudo apt-get update
+sudo apt-get install maven
+2. Verification
+mvn -v

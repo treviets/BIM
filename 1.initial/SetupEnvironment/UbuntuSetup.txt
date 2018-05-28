@@ -1,0 +1,14 @@
+http://askubuntu.com/questions/410244/a-command-to-list-all-users-and-how-to-add-delete-modify-users
+Create user:
+sudo adduser new_username
+or
+sudo useradd new_username
+
+Remove user:
+sudo userdel username
+
+To modify the username of a user:
+usermod -l new_username old_username
+
+To change the password for a user:
+sudo passwd username

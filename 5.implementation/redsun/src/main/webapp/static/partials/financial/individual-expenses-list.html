@@ -1,0 +1,57 @@
+<div ng-controller="individualExpensesController_List" class="col-lg-12 panel panel-success" ng-init="init(1, 1)">
+    <div class="row panel-heading">
+        <div class="col-sm-6 text-left">
+            Individual Expenses List
+        </div>
+        <div class="col-sm-6 text-right">
+        	<span ng-if="permission.projectRole.individualExpensePermission.indexOf(2)>=0" ng-click="newIndividualExpenses();" class="glyphicon glyphicon-plus" title="click here to add new individual expenses"></span>
+ 			<span ng-click="exportProjectExpenses();" class="glyphicon glyphicon-export" title="click here to export these individual expenses"></span>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="row panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="text-align-center">No.</th>
+                <th class="text-align-center">Project</th>
+                <th class="text-align-center">Type</th>
+                <th class="text-align-center">Resource</th>
+                <th class="text-align-center">Name</th>
+                <th class="text-align-center">Status</th>
+                <th class="text-align-center">Closed</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="expense in expenses | orderBy:sortKey:reverse | itemsPerPage:itemsPerPage" total-items="totalCount">
+                <td class="text-align-center">{{$index + 1 + itemsPerPage * (pageNo-1)}}</td>
+                <td class="text-align-center">{{expense.project}}</td>
+                <td class="text-align-center">{{expense.type}}</td>
+                <td class="text-align-center">{{expense.resource}}</td>
+                <td class="text-align-center">{{expense.name}}</td>
+                <td class="text-align-center">{{expense.status}}</td>
+                <td class="text-align-center">
+                    <input ng-disabled="true" type="checkbox" ng-checked="expense.closed"/>
+                </td>
+                <td class="text-align-center">
+                    <button type="button" class="btn btn-info" ng-click="viewDetailIndividualExpenses(expense.id)">
+                        <span class="glyphicon glyphicon-eye-open"></span> Update
+                    </button>
+                    <button type="button" class="btn btn-info" ng-click="deleteIndividualExpenses(expense.id)">
+                        <span class="glyphicon glyphicon-remove-sign"></span> Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <dir-pagination-controls
+                max-size="5"
+                direction-links="true"
+                boundary-links="true"
+                on-page-change="init(123, newPageNumber)" >
+        </dir-pagination-controls>
+    </div>
+</div>
+
+

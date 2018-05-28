@@ -1,0 +1,59 @@
+ 						<div class="panel-heading clearfix">
+			    			<input type="text" class="form-control" placeholder="Search" ng-model="searchName"/>
+			  			</div>
+			  			<div class="panel-body">
+				  			<div class="ms-list"  ng-init = "getTaskMaterials();">
+			  				<p class="text-primary">In Task</p>
+								<table class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Unit</th>
+											<th>Planning</th>
+											<th>Used</th>
+											<th>Actual today</th>
+											<th>Delete</th>
+										</tr>
+										
+									</thead>
+									<tbody>
+									<tr ng-repeat="taskmaterial in taskmaterials">
+										<td class = 'totext'>{{taskmaterial.materialName}} <span class="tooltiptext">Description: {{taskmaterial.description}}</span></td>
+										<td>{{taskmaterial.unit}}</td>
+										<td><input type="text"  class="form-control"  value="{{taskmaterial.quantity}}" ng-model="taskmaterial.quantity" /></td>
+										<td>
+											<input type="number" class="form-control" ng-model="taskmaterial.actualQuantity" readonly/>
+										</td>
+										<td>
+											<input type="number" class="form-control" ng-model="taskmaterial.actual" ng-disabled="permission.projectRole.taskPermission.indexOf(3)<0"/>
+										</td>
+										<td><input type="checkbox" id = "check" ng-model="taskmaterial.isDeleted"/></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+							<hr>
+							<div class="ms-list"  ng-init = "getFilterProjectMaterials();">
+								<p class="text-primary">Out Task</p>
+								<table class="table table-striped table-hover table-bordered">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Unit</th>
+										<th>Quantity</th>
+									</tr>
+										
+									</thead>
+									<tbody>
+									<tr ng-repeat="projectmaterial in projectmaterials | filter:searchName">
+										<td class = 'totext'>{{projectmaterial.materialName}} <span class="tooltiptext">Description: {{projectmaterial.description}}</span></td>
+										<td>{{projectmaterial.unit}}</td>
+										<td>
+											<input type="number" class="form-control" ng-model="projectmaterial.quan" ng-disabled="permission.projectRole.taskPermission.indexOf(3)<0" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"/>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+			  			</div>
+				  			

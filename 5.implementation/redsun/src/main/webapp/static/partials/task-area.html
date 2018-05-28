@@ -1,0 +1,17 @@
+<div class="panel-heading clearfix">
+	<div class="pull-left">
+		<ul class="list-inline" ng-if="checkPermission('PM_3') || checkPermission('PM_2')">
+			<li><label class="control-label" for="attachments">{{'Import-task' | translate}}</label></li>
+			<li><input type="file" onchange="angular.element(this).scope().fileTaskSelected(this)" /></li>
+			<li><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="{{'task_sheet_import_button' | translate}}" ng-click="importTask()" ng-disabled="permission.projectRole.projectPermission.indexOf(3)<0">
+				<span class="glyphicon glyphicon-import"></span>
+				</button>
+			</li>
+		</ul>
+	</div>
+	<div class="pull-right">
+		<span ng-if="permission.projectRole.taskPermission.indexOf(2)>=0 && checkPermission('PM_3')" ng-click="addTask();" class="glyphicon glyphicon-plus" title="Click here to add new task"></span>
+		<span ng-click="exportTasks();" class="glyphicon glyphicon-export" title="Click here to export these tasks"></span> &nbsp;&nbsp;&nbsp;
+		<span ng-click="isTrashAllTaskOneProject();" class="glyphicon glyphicon-trash" ng-if="checkPermission('PM_4');" title="Click here to delete all tasks"></span> &nbsp;&nbsp;&nbsp;	
+	</div>   			
+</div>

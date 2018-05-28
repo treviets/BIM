@@ -1,0 +1,104 @@
+http://www.krizna.com/ubuntu/setup-svn-server-on-ubuntu-14-04/
+sudo apt-get update
+sudo apt-get install subversion apache2 libapache2-svn apache2-utils
+sudo mkdir -p /svn/repos/
+sudo svnadmin create /svn/repos/bimrepo
+sudo chown -R www-data:www-data /svn/repos/bimrepo
+sudo nano /etc/apache2/sites-available/bimrepo.conf
+<Location /svn>
+  DAV svn
+  SVNParentPath /svn/repos/
+  AuthType Basic
+  AuthName "Bim Repo"
+  AuthUserFile /etc/svnpasswd
+  Require valid-user
+ </Location>
+
+sudo a2ensite bimrepo
+sudo service apache2 reload
+sudo htpasswd /etc/svnpasswd quang
+sudo htpasswd /etc/svnpasswd vu
+sudo htpasswd /etc/svnpasswd hai
+sudo htpasswd /etc/svnpasswd thanh
+
+http://localhost/svn/bimrepo
+
+
+http://odyniec.net/articles/ubuntu-subversion-server/
+http://www.pir8geek.com/setup-svn-server-ubuntu-14-04-lts-web-access/
+http://www.krizna.com/ubuntu/setup-svn-server-on-ubuntu-14-04/
+https://www.youtube.com/watch?v=d-hesNp0yAU
+
+Create users:
+quang,vu,thanh,hai (pass: 123)
+sudo adduser username
+
+Add user 'hau' to svn
+sudo adduser hau
+sudo htpasswd /etc/svnpasswd hau
+
+Add user 'tien' to svn
+sudo adduser tien
+sudo htpasswd /etc/svnpasswd tien
+
+
+
+$ sudo apt-get install subversion
+$ sudo mkdir /usr/local/svn
+$ sudo mkdir /usr/local/svn/repos
+$ sudo groupadd bimgroup
+$ sudo chgrp bimgroup /usr/local/svn/repos
+users in the group can write:
+$ sudo chmod g+w /usr/local/svn/repos
+$ sudo chmod g+s /usr/local/svn/repos
+add user quang.
+$ sudo usermod -a -G bimgroup quang
+add other user.
+$ sudo usermod -a -G bimgroup vu
+$ sudo usermod -a -G svn hai
+$ sudo usermod -a -G svn thanh
+
+$ groups
+
+Creating a BIM Repository
+$ umask 002
+$ svnadmin create /usr/local/svn/repos/bim
+$ umask 022
+$ svn checkout file:///usr/local/svn/repos/bim
+$ cd bim
+$ echo 'Hello, World!' > hello.txt
+$ svn add hello.txt
+A         hello.txt
+
+$ svn commit -m "Added a 'hello world' text file."
+Adding         hello.txt
+Transmitting file data .
+Committed revision 1.
+
+Accessing the Repository with the Svn Protocol
+$ sudo gedit /usr/local/svn/passwd-team
+[users]
+quang = password
+vu = password
+hai = password
+thanh = password
+
+$ sudo chmod 600 /usr/local/svn/passwd-team
+$ gedit /usr/local/svn/repos/test/conf/svnserve.conf
+[general]
+anon-access = none
+password-db = /usr/local/svn/passwd-team
+realm = Team
+
+$ sudo svnserve -d --foreground -r /usr/local/svn/repos
+$ svn checkout svn://192.168.10.11/bim --username quang
+
+Accessing the Repository with the Svn+SSH Protocol
+$ svn checkout svn+ssh://192.168.10.11/usr/local/svn/repos/bim --username quang
+
+Svnserve Initialization Script (auto start svn server):
+$ sudo chmod +x /etc/init.d/svnserve
+$ sudo update-rc.d svnserve defaults
+
+Start svn serber manually:
+$ sudo /etc/init.d/svnserve start

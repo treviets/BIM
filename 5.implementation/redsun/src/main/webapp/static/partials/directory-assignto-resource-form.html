@@ -1,0 +1,113 @@
+<div ng-controller="docDirectoryResourceCtrl">
+	<form name="frmDirectory" novalidate>
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading clearfix">
+				<div class="panel-title pull-left"><span class="glyphicon glyphicon-modal-window"></span> {{'doc.file.form.assign.title' | translate}}</div>
+				<div class="btn-group pull-right">
+					<span class="glyphicon glyphicon-floppy-disk" ng-click="btnSave()" data-toggle="tooltip" title="{{'doc.file.form.assign.button.save.tooltip' | translate}}" ng-if="permission.projectRole.assignFolder.indexOf(3)>=0"></span>
+					<span class="glyphicon glyphicon-envelope" ng-click="showConfigMailDoc($event);" data-toggle="tooltip" title="{{'doc.file.form.assign.button.mail.tooltip' | translate}}" ng-if="permission.projectRole.configureMail.indexOf(1)>=0"></span>
+					<span class="glyphicon glyphicon-remove" ng-click="closeDialog()" data-toggle="tooltip" title="{{'doc.file.form.assign.button.close.tooltip' | translate}}"></span>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="alertMessageASR" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div layout="row">
+			    		<div class="checkbox">
+  							<label><input type="checkbox" ng-model="chkType" ng-change="initTreeRight();">{{'doc.file.form.assign.chk.type' | translate}}</label>
+						</div>
+			    	</div>
+					<div layout="row">
+			    		<div class="checkbox">
+  							<label><input type="checkbox" ng-model="chkAssign" ng-change="initTreeRight();">{{'doc.file.form.assign.chk.asignrs' | translate}}</label>
+						</div>
+			    	</div>
+					<div layout="row">
+				    	<md-input-container>
+				        	<label>{{'doc.file.form.assign.ddl.lable' | translate}}</label>
+				        	<md-select ng-model="selectedResource"
+				                   md-on-close="clearSearchTerm()"
+				                   data-md-container-class="selectdemoSelectHeader"
+				                   multiple
+				                   ng-hide="chkAssign">
+					          	<md-select-header class="demo-select-header">
+					            	<input ng-model="searchTerm"
+					                   type="search"
+					                   placeholder="{{'doc.file.form.assign.ddl.placeholder' | translate}}"
+					                   class="demo-header-searchbox md-text">
+					          	</md-select-header>
+					          	<md-optgroup label="{{'doc.file.form.assign.ddl.lable' | translate}}">
+					            	<md-option ng-value="resource" ng-repeat="resource in resources |
+					              		filter:searchTerm">{{resource.code + " - " + resource.name}}</md-option>
+					          	</md-optgroup>
+				        	</md-select>
+				        	</md-input-container>
+				        	<md-input-container>
+				        	<label>{{'doc.file.form.assign.ddl.lable' | translate}}</label>
+				        	<md-select ng-model="selectedResource"
+				                   md-on-close="clearSearchTerm()"
+				                   data-md-container-class="selectdemoSelectHeader"
+				                   ng-show="chkAssign"
+				                   ng-change="getDirectoryByUser(selectedResource)">
+					          	<md-select-header class="demo-select-header">
+					            	<input ng-model="searchTerm"
+					                   type="search"
+					                   placeholder="Re-Assign"
+					                   class="demo-header-searchbox md-text">
+					          	</md-select-header>
+					          	<md-optgroup label="Re-Assign">
+					            	<md-option ng-value="resource" ng-repeat="resource in resourcesAssigned |
+					              		filter:searchTerm">{{resource.code + " - " + resource.name}}</md-option>
+					          	</md-optgroup>
+				        	</md-select>
+				      	</md-input-container>
+			    	</div>
+			    	<div layout="row">
+			    		<div class="checkbox">
+  							<label><input type="checkbox" ng-model="chkFolder">{{'doc.file.form.assign.chk.mail' | translate}}</label>
+						</div>
+			    	</div>
+		            <div class="row vdivide">
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<div
+			      				data-angular-treeview="true"
+			      				data-tree-id="treeas01"
+			      				data-tree-model="availDirectories"
+			      				data-node-id="id"
+			      				data-node-label="name"
+			      				data-node-children="subFolders">
+			    			</div>
+   						</div>
+   						<div class="col-md-2 col-sm-2 col-xs-12">
+   							<div style="float:left; margin-top: 59px; margin-left: 20px;">
+	                            <input id="btnRight" type="button" value="-->" style="width:50px" ng-click="btnRight()" />
+	                            <br/>
+	                            <br/>
+	                            <input id="btnLeft" type="button" value="<--" style="width:50px" ng-click="btnLeft()" />
+	                            <br/>
+	                            <br/>
+	                            <input id="btnLeftAll" type="button" value="<<--" style="width:50px" ng-click="btnLeftAll()" />
+   							</div>
+   						</div>
+   						<div class="col-md-5 col-sm-5 col-xs-12">
+							<div
+			      				data-angular-treeview="true"
+			      				data-tree-id="treeas02"
+			      				data-tree-model="SelectedAvailItems"
+			      				data-node-id="id"
+			      				data-node-label="name"
+			      				data-node-children="subFolders">
+			    			</div>
+   						</div>
+      				</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

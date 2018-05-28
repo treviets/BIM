@@ -1,0 +1,6 @@
+Wbs	Name	Duration	Start_Date	Finish_Date	
+
+
+
+/* Trong dó: Duration tính bang: = VALUE(LEFT(D2, LEN(D2)-4)) _________Voi D2 = o chua gia tri Duration
+Start_Date, Finish_Date theo dinh dang: yyy-MM-dd (2017-12-30)

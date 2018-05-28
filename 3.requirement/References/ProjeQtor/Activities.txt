@@ -1,0 +1,24 @@
+Activities: Thanh phan nay dung de phan cong cong viec (work breakdown structure and planning) va giam sat tien do cong viec cung nhu effort (work hour, cost) thuc hien.
+Ben canh do thanh phan nay cung cho thay moi lien quan lan nhau voi cac thanh phan khac nhu activity khac, bug, issue, action, event, calendar,...
+- project (ref)
+- type (ref)
+- parent (ref)
+- predecessor elements (ref): cong viec truoc do
+- linked elements (ref): cong viec lien quan, actions lien quan
+- successor elements (ref): childrens activitives, predecessor, linked.
+- requestor (ref)
+- responsible (ref)
+- assignees (ref): nhung nguoi duoc giao
+- status (ref)
+- product (ref): cong viec nay tao ra sp gi (version may)
+- component (ref): tuong tu product
+- tickets (ref): issues, bug, assistance, 
+- description: mot ta cong viec va ket qua mong doi.
+- result description: ket qua thuc hien
+- date: validated, planned, real, requested
+- work: tuong ung voi date
+- cost: tuong ung voi date
+- priority
+- progress (%)
+- notes
+- attachments

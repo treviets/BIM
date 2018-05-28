@@ -1,0 +1,50 @@
+<div ng-controller="fileSharingController">
+<div class="panel-heading clearfix border-bottom">
+	<h3 class="panel-title pull-left"><strong>All site files</strong></h3>
+	<div class="pull-right">
+		<button class="btn btn-primary" ng-click="uploadFile()">Upload a file</button>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="panel-body no-padding">
+		<ul class="social-files-list no-padding">
+			<li class="social-file-item">
+				<div class="col-sm-12 col-md-12 col-lg-12 no-padding">
+					<div class="social-file-image col-lg-1 col-md-1 col-sm-1 no-padding">
+						<a href="http://elgg.trevietsoft.com/file/view/42/import-equipment-document">
+							<img class="col-sm-12 col-md-12 col-lg-12" alt="import equipment document" src="http://elgg.trevietsoft.com/cache/1505275161/default/file/icons/text.gif">
+						</a>
+					</div>
+					<h3 hidden="hidden" class="panel-title pull-left"><strong>{{selectedGroup.id}}</strong></h3>
+					<div class="social-file-body col-sm-11 col-md-11 col-lg-11"  ng-init = "getSocialFileForProject();">
+						<!-- getSocialFileForProject -->
+						<div class="ms-list">
+								<table class="table table-striped table-hover table-bordered">
+									<tbody>
+										<thead>
+											<tr>
+								  				<th>Title</th>
+								  				<th>Download</th>
+								  				<th>Delete</th>
+				  							</tr>
+			  							</thead>
+										<tr ng-repeat="file in fileSharings track by $index">
+											<td>{{file.title}}</td>
+											<td><a target="_blank" href="/redsun/file-sharing/{{file.filePath}}"><span class="glyphicon glyphicon-download"></span></a>
+											</td> 
+											<td><a ng-model="item.filePath" title="Delete this" class="social-file-menu-content"  ng-click="deleteFileSharing(file.id, $index)" data-confirm="Are you sure you want to delete this item?">
+												<span class="glyphicon glyphicon-trash"></span></a>
+											</td>
+											
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</div>

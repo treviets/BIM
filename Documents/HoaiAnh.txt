@@ -1,0 +1,14 @@
+Hoai Anh:
+- Điểm mạnh (tự nhận xét): Tiếng anh tốt, tỉ mỉ từng ly, thường cover công việc của các thành viên, thích học hỏi thêm về kỹ thuật.
+- Điểm yếu: Chưa biết nhiều về lập trình web.
+
+Đặc điểm:
+- Chỗ ở hiện tại là ở quận 1 gần Công viên 23/9.
+- SV năm 3.
+- Đã làm Window form, MSSQL Server, Java app (không phải web).
+- Từng học thêm ngôn ngữ 'swift' để lập trình iOS.
+- Thích làm việc ở nhà hơn.
+- Thời gian có thể làm việc: 2,4,6 từ 6h chiều đến 12h. Còn 3,5 buổi chiều, thứ 7 buổi sáng.
+- Đang làm đồ án SEP (đến 30/7).
+- Chấp nhận vừa học vừa làm (không đóng phí cũng như k lấy lương).
+- Mục tiêu ban đầu: Theo dự án đến release (k bỏ giữa chừng).

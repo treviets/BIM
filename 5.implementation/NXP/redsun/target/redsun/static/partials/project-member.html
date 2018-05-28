@@ -1,0 +1,41 @@
+ 						<div class="panel-heading clearfix">
+			    			<h3 class="panel-title pull-left">Member</h3>
+					    	<div class="pull-right">
+					    		<span ng-click="showProjectRole();" ng-if="checkPermission('PM_3') || checkPermission('PM_2')" class="glyphicon glyphicon-wrench" title="{{'doc.folder.form.button.permission.tooltip' | translate}}"></span>
+					    		<span ng-if="permission.projectRole.membersPermisison.indexOf(1)>=0 && checkPermission('PM_3') || checkPermission('PM_2')" ng-click="addMember();" class="glyphicon glyphicon-plus" title="click here to add new member"></span>
+			      				<span ng-click="exportMember();" class="glyphicon glyphicon-export" title="click here to export these members"></span>&nbsp;&nbsp;&nbsp;
+			      			</div>
+			      			<div class="pull-left screen-icons">
+			      				
+			      			</div>
+				    	
+			  			</div>
+			  			<div class="panel-body">
+				  			<div class="table-responsive" >
+									<table class="table table-striped table-hover table-bordered">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Role</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="projectresource in projectresources track by $index" >
+												<td>{{projectresource.resourceCode + " - " + projectresource.resourceName}} {{projectresource.moduleRole}}</td>
+												<td>
+													<select ng-model="projectresource.projectRoleId" ng-options="+(projectRole.id) as projectRole.name for projectRole in projectRoles">
+													</select>
+												</td>
+												<td class="text-center">
+													<a>
+										<span title="Save role in project for this member" class="glyphicon glyphicon-floppy-save"  ng-if="checkPermission('PM_3') || checkPermission('PM_2')" ng-click="updateProjectPermission(projectresource.resourceCode, $index);">
+													<a>
+										<span title="Remove role in project for this member" class="glyphicon glyphicon-trash" ng-if="checkPermission('PM_4')" ng-click="updateProjectPermission(projectresource.resourceCode,-1);"></span></a>
+										</td>
+											</tr>
+										</tbody>
+									</table>
+							</div>
+			  			</div>
+			  						 

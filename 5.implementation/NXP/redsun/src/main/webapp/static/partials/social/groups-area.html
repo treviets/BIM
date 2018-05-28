@@ -1,0 +1,14 @@
+
+<div class="panel-heading clearfix">
+	<h3 class="panel-title pull-left"><strong>Groups</strong></h3> <br/>
+</div>
+<div class="container-fluid">
+	<div class="panel-body social-groups no-padding">
+		<button ng-if="!isGroupDetail" class="btn btn-success pull-right" ng-click="createNewGroup()">New group</button>
+		<div class="group-list col-lg-12 col-md-12 col-sm-12" ng-init="initSocialGroups()">
+			<div compile="groupContent">
+				
+			</div>
+		</div>
+	</div>
+</div>

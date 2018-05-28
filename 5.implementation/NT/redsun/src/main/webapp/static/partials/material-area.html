@@ -1,0 +1,18 @@
+			  			<div class="panel-body">
+				  			<div class="ms-list"  ng-init = "getMaterials();">
+								<table class="table table-striped table-hover table-bordered">
+									<tbody>
+										<tr>
+							  				<th>Name</th>
+							  				<th>Quantity</th>
+			  							</tr>
+										<tr ng-repeat="material in materials">
+											<td>
+											<br>
+												<input type="checkbox" id = "check" ng-model="material.isSelected"/>{{material.name}}<span class="tooltiptext">{{material.description}}</span></td>
+											<td><input type="number" class="form-control" ng-model="material.quan" placeholder="Quantity"/></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+			  			</div>

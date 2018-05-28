@@ -1,0 +1,125 @@
+<!-- Content -->
+<div class="panel-body">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#manage-permission" data-toggle="tab">Assign User Role</a></li>
+		<li ><a href="#edit-role" data-toggle="tab">Manage
+				Role</a></li>
+		
+
+	</ul>
+	<div class="tab-content">
+		
+		<div id="manage-permission" class="tab-pane active">
+			<input type="text" class ="form-control" placeholder="Search" ng-model="searchName">
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Role</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="resource in resourceAllType | filter:searchName">
+							<td>{{resource.code}} - {{resource.name}}</td>
+							<td><select ng-model="moduleRoles[resource.code]" ng-options="projectRole.name for projectRole in projectRoles track by projectRole.id">
+							</select></td>
+							<td class="text-center"><a><span
+									class="glyphicon glyphicon-floppy-save"
+									ng-click="updateProjectPermission(resource.code,moduleRoles[resource.code].id);"> <a> 
+									<span ng-click="updateProjectPermission(resource.code,-1);"
+											class="glyphicon glyphicon-trash"></span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="col-sm-4 control-label" for="formGroupInputSmall"></label>
+				<div class="col-sm-8">
+					<button type="button" class="btn btn-default"
+						ng-click="closeDialog();">Close</button>
+
+				</div>
+			</div>
+		</div>
+		<div id="edit-role" class="tab-pane ">
+
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<div class="pull-right">
+							<span ng-click="addProjectRole();"
+								class="glyphicon glyphicon-plus"
+								title="click here to add new Role" ng-if="permission.projectRole.role.indexOf(2)>=0"></span>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-striped table-hover table-bordered">
+								<thead>
+									<th>Id</th>
+									<th>Name</th>
+									<th>Tab</th>
+									<th>Action</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="projectRole in projectRoles">
+										<td>{{projectRole.id}}</td>
+										<td><input type="text" ng-model="projectRole.name" /></td>
+
+										<td>
+											<!-- tab -->
+											<div class="row" ng-repeat="tab in moduleProperties">
+												<div class="col-sm-4">{{tab.itemTitle}}</div>
+												<div class="col-sm-8">
+													<input type="checkbox" name="read" ng-model="bool"
+														ng-checked="isProjectRolePsCheck(projectRole[tab.item],1)"
+														ng-change="projectRolePsChange(projectRole,tab.item,bool,1)" />Read
+
+													<input type="checkbox" name="create" ng-model="bool2"
+														ng-checked="isProjectRolePsCheck(projectRole[tab.item],2)"
+														ng-change="projectRolePsChange(projectRole,tab.item,bool2,2)" />Create
+
+													<input type="checkbox" name="update" ng-model="bool3"
+														ng-checked="isProjectRolePsCheck(projectRole[tab.item],3)"
+														ng-change="projectRolePsChange(projectRole,tab.item,bool3,3)" />Update
+
+													<input type="checkbox" name="delete" ng-model="bool4"
+														ng-checked="isProjectRolePsCheck(projectRole[tab.item],4)"
+														ng-change="projectRolePsChange(projectRole,tab.item,bool4,4)" />Delete
+												</div>
+											</div> <!-- end tab --> <!-- we will insert right here -->
+
+
+
+										</td>
+										<td class="text-center"><a> <span
+												class="glyphicon glyphicon-floppy-save"
+												ng-click="saveProjectRole(projectRole)" ng-if="permission.projectRole.role.indexOf(3)>=0"></span></a> <a
+											target="_self"> <span class="glyphicon glyphicon-trash"
+												ng-click="deleteProjectRole(projectRole)" ng-if="permission.projectRole.role.indexOf(4)>=0"></span></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall"></label>
+							<div class="col-sm-8">
+								<button type="button" class="btn btn-default"
+									ng-click="closeDialog();">Close</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+

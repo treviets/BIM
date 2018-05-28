@@ -1,0 +1,70 @@
+<!-- Spring namespace-based configuration -->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+	<http use-expressions="true" auto-config="true">
+		
+		<intercept-url pattern="/dashboard/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/project/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/activities/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/task/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/priority/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/design/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/pm-report/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/directory/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/directoryresource/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/bpmn/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/client/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/project-timeline/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/hr/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/humanresource/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/system/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/devices/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/calendars/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/facility/**"  access="isAuthenticated()" />
+		<intercept-url pattern="/social/**"  access="isAuthenticated()" />
+		<!-- ====================================================== -->
+		<!-- If we have our own LoginPage. So we must -->
+		<!-- tell Spring the name and the place. -->
+		<!-- In our case we take the same page -->
+		<!-- for a error message by a failure. -->
+		<!-- Further the page after a successfully login. -->
+		<!-- ====================================================== -->
+		<form-login login-page="/login" default-target-url="/calendars/" authentication-failure-url="/login?isShowMessage=true" />
+
+		<intercept-url pattern="/images/*" access="permitAll" />
+		<intercept-url pattern="/sessionTimeout" access="permitAll" />
+		<intercept-url pattern="/sessionTimeoutRedirect" access="permitAll" />
+		<intercept-url pattern="/logout" access="permitAll" />
+		<access-denied-handler error-page="/errorPage" />
+		
+		<logout logout-success-url="/logoutSuccess" delete-cookies="JSESSIONID"/>
+		
+		<session-management session-authentication-error-url="/sessionTimeout?error=alreadyLogin">
+		   <concurrency-control max-sessions="1" error-if-maximum-exceeded="false" expired-url="/sessionTimeout?error=sessionExpiredDuplicateLogin"/>
+		</session-management>
+		
+		<remember-me key="remember-bim-session" authentication-success-handler-ref="customAuthenticationSuccessHandler"/>
+		
+<!-- 		<headers> -->
+<!--         	<frame-options disabled="true"></frame-options> -->
+<!--     	</headers> -->
+		
+	</http>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="myUserDetailsService">
+			<password-encoder hash="md5"/>
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="myUserDetailsService" class="com.redsun.service.auth.MyUserDetailsService"></beans:bean>
+	
+	<beans:bean id="customAuthenticationSuccessHandler" class="com.redsun.service.auth.CustomAuthenticationSuccessHandler"></beans:bean>
+	
+</beans:beans>
+
+

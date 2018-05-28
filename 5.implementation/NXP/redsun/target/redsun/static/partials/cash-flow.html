@@ -1,0 +1,48 @@
+<div ng-controller="pmReResourceCostCtrl" class="ng-scope">
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">{{'report_pm_costs_resource_header' | translate}}</h3>
+			<div class="pull-right">
+				<span ng-click="initRSC();" class="glyphicon glyphicon-eye-open" title="{{'report_pm_costs_menu_show' | translate}}"></span>
+				<span ng-click="exportResourceCostPDF('resource_cost_overview', 'pdfRCO');" class="glyphicon glyphicon-export" title="{{'report_pm_costs_menu_export_pdf' | translate}}"></span> &nbsp;&nbsp;&nbsp;
+				<span ng-click="exitDetailFullscreen('tasks-area');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span><span ng-click="detailFullscreen('tasks-area');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span>
+			</div>
+		</div>
+		<div class="panel-body">	
+			<div class="col-sm-8">
+		 		<md-datepicker ng-model="fromDate" ng-change="changeFromDate(fromDate)" md-placeholder="{{'report_pm_costs_fromdate' | translate}}"></md-datepicker>
+			</div>
+			<div class="col-sm-8">
+		 		<md-datepicker ng-model="toDate" ng-change="changeToDate(toDate)" md-placeholder="{{'report_pm_costs_todate' | translate}}"></md-datepicker>
+			</div>
+			<div id="pdfRCO" class="row">
+				<div class="col-sm-6">
+					<canvas id="bar" class="chart chart-bar"
+			  			chart-data="dataRSCMulBar" chart-labels="labelRSCMulBar" chart-series="seriesRSCMulBar" chart-options="optionRSCMulBar" chart-legend="true" chart-colors="colorRSCMulBar">
+					</canvas>
+				</div>
+				<div class="col-sm-6">
+					<canvas id="pie" class="chart chart-pie"
+			  			chart-data="dataRSCPie" chart-labels="labelRSCPie" chart-options="optionRSCPie" chart-colors="colorRSCPie">
+					</canvas> 
+				</div>
+				<br />
+				<br />
+				<table class="table table-bordered">
+					<tr>
+						<th>{{'report_pm_costs_name' | translate}}</th>
+						<th>{{'report_pm_costs_acw' | translate}}</th>
+						<th>{{'report_pm_costs_acc' | translate}}</th>
+						<th>{{'report_pm_costs_stdrate' | translate}}</th>
+					</tr>
+					<tr ng-repeat = "rc in resourceCost">
+						<td>{{rc.resourceName}}</td>
+						<td>{{rc.totalActuallyTime}}</td>
+						<td>{{rc.totalActuallyCost}}</td>
+						<td>{{rc.totalActuallyCost}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>	

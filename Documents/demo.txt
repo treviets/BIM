@@ -1,0 +1,34 @@
+Login:
+- Màu ok.
+- Input rộng quá.
+
+Dashboard:
+- New project: đổi hình dấu '+' thành hình có ý nghĩa tạo mới project.
+
+Project:
+- Tích hợp new Activity vào project.
+
+Activity: 
+- Cần thêm tài liệu tham khảo (bản vẽ, pdf, excel).
+- Để ký hiệu tiền ($) tại tiêu đề.
+
+Resource:
+- Tạo resource: tên gì vào role nào.
+
+Document:
+- Thiếu title.
+- Upload file.
+
+Cost & Expense:
+- Tích hợp chi phí vào 1 chỗ.
+- Cần có một số report.
+
+Khách hàng quan tâm:
+- Tiến trình: Cần có chart.
+- Liệt kê cây task.
+
+Note:
+- Cần một số biểu đồ có thể tham khảo từ url:
+https://www.google.com.vn/search?q=bim+360+field&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjQif3Qy_rSAhXBqY8KHZPcCYIQ_AUICSgC&biw=1242&bih=602
+
+- Task chỉ có 1 người thực hiện.

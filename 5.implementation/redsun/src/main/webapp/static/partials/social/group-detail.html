@@ -1,0 +1,54 @@
+
+<div class="panel-heading clearfix">
+	<h3 class="panel-title pull-left">
+		<strong>{{selectedGroup.name}}</strong>
+	</h3><br/>
+	<div class="group-description">
+		{{selectedGroup.description}}
+	</div><br/>
+	<div>
+		Created by: {{selectedGroup.createdBy}} <br/>
+		Created date: {{selectedGroup.createdDate}} <br/>
+	</div>
+	<button class="btn btn-success pull-right" ng-click="backToGroupsList()">Back to list</button>
+</div>
+<div class="container-fluid">
+	<div class="panel-body text-center col-md-12 col-lg-12 col-sm-12" ng-if="needToJoin">
+		<button class="btn btn-primary" ng-click="askToJoinThisGroup()">Join this group</button>
+	</div>
+	<div class="panel-body" ng-if="!needToJoin">
+		<div class="col-md-12 col-lg-12 col-sm-12 no-padding">
+			<div class="messages-area col-md-10 col-lg-10 col-sm-10 no-padding clearfix">
+				<ul id="chatArea">
+					<li class="col-md-12 col-lg-12 col-sm-12 no-padding chat-line" ng-repeat="chat in chatList[groupId]">
+						<div class="col-md-1 col-lg-1 col-sm-1 no-padding chat-avatar">
+							<img ng-src="{{chat.avatar}}" title="{{chat.createdBy}}"/>
+						</div>
+						<div class="col-md-11 col-lg-11 col-sm-11 no-padding chat-message">
+							<div class="author">{{chat.createdBy}} - {{chat.createdDate}}</div>
+							{{chat.message}}
+						</div>
+					</li>
+				</ul>
+				
+			</div>
+			<div class="members-area col-md-2 col-lg-2 col-sm-2 no-padding clearfix">
+				<div class="list-members">
+					<div class="col-md-12 col-lg-12 col-sm-12 no-padding member-avatar" ng-repeat="mem in selectedGroup.members">
+						<div ng-repeat="member in memberList" ng-if="member.resourceCode === mem.username || member.code === mem.username">
+							<div class="col-md-4 col-lg-4 col-sm-4 no-padding"><img ng-src="{{member.avatar}}" title="{{member.resourceName?member.resourceName:member.name}}"/></div>
+							<div class="col-md-8 col-lg-8 col-sm-8 no-padding member-name"><span> {{member.resourceName?member.resourceName:member.name}}</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="col-md-12 col-lg-12 col-sm-12 no-padding message-input">
+				<form>
+					<input type="text" class="col-md-10 col-lg-10 col-sm-10 no-padding" ng-model="chatObject.message"/>
+					<input type="submit" class="col-md-2 col-lg-2 col-sm-2 no-padding" scroll-bottom="bottom" value="Send" ng-click="sendChat();"></input>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

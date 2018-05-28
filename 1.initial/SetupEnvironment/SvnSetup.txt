@@ -1,0 +1,5 @@
+Link: http://askubuntu.com/questions/812678/graphical-svn-client-for-ubuntu-16-04
+Open terminal and type:
+sudo apt-get install rabbitvcs-cli rabbitvcs-core rabbitvcs-gedit rabbitvcs-nautilus
+Restart ubuntu.
+Right click on any folder to see.

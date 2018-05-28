@@ -1,0 +1,65 @@
+<!--Start Resource Modal content-->
+		<div class="panel panel-default" ng-controller="TabController" id="resourceModelDialog" >
+		 	<div class="modal-dialog1 panel-body">
+			     <div class="modal-content1">
+		  			<div class="modal-header1">
+		      			<h4 class="modal-title">Resource Management</h4>
+		      		</div>
+		      		
+		      		<div class="modal-body1">
+		        		<p class="dialog-title">List of selected resource</p>
+		        		<table class="table table-striped table-hover table-bordered" >
+							<tbody>
+								<tr>
+									<th>Code</th>
+									<th>Full Name</th>
+									<th>Email</th>
+									<th></th>
+								</tr>
+								<tr ng-repeat="resource in resourcesSelected">
+									<td>{{ resource.resourceCode }}</td>
+									<td>{{ resource.resourceName }}</td>
+									<td>{{ resource.emailOfResponsible }}</td>	
+									
+								 	<td><button type="button" class="btn btn-success btn-resource" ng-if="checkPermission('BPMN_4')" ng-click="removeResourceForStep(this.resource);">Remove</button></td>	
+								</tr> 
+							</tbody>
+						</table>
+		      		</div>
+			     
+			      <!-- List resource from redsun service -->
+		      		<div class="modal-body1">
+		        		<p class="dialog-title">Add resource for step</p>
+		        		<table class="table table-striped table-hover table-bordered">
+							<tbody>
+								<tr>
+									<th>Code</th>
+									<th>Full Name</th>
+									<th>Email</th>
+									<th></th>
+								</tr>
+								<tr ng-repeat="projectresource in projectresources">
+									<td>{{ projectresource.resourceCode }}</td>
+									<td>{{ projectresource.resourceName }}</td>
+									<td>{{ projectresource.emailOfResponsible }}</td>
+									
+									<td><button type="button" ng-if="checkPermission('BPMN_2') || checkPermission('BPMN_3')" class="btn btn-success btn-resource" ng-click="addResourceForStep(this.projectresource);">Assign</button></td>	
+								</tr>
+							</tbody>
+						</table>
+		      		</div>
+		      		
+			       	<div class="col-sm-12 text-center">
+			         	<button type="button" class="btn btn-default" ng-click="closeResourceDialog();">
+			         		<span></span>Close
+			         	</button> 	
+			         	<!-- <button type="button" class="btn btn-info" ng-click="saveProjectResource();">
+			         		<span class="glyphicon glyphicon-floppy-save"></span>Save
+			         	</button> -->
+			       	</div>
+			       	
+			     </div>
+			</div>
+		</div>
+		
+		<!-- End Resource Modal content-->

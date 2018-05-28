@@ -1,0 +1,83 @@
+<div class="" id="addCalendarModel" role="dialog">
+	
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" ng-click="closeDialog();" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add Event</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" name="myForm" method="post" enctype="multipart/form-data">
+						<div class="form-group {{titleError}}">
+							<label class="control-label col-sm-3" for="dateTo">Title:</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="title" ng-model="calendar.data.title">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="dateFrom">From:</label>
+							<div class="col-sm-9">
+								<!-- <input uib-timepicker type="text" ng-model="calendar.data.start" class="form-control" id="dateFrom"> -->
+								<md-datepicker 
+									ng-model="calendar.data.start" 
+               						md-placeholder="Enter date"
+               						md-min-date="minDay" 
+								></md-datepicker>
+								<!-- <div uib-timepicker ng-model="calendar.data.Start" hour-step="1" minute-step="15" show-meridian="true"></div> -->
+								<div uib-timepicker ng-model="ev.fromhour" hour-step="1" minute-step="15" show-meridian="true"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="dateTo">To:</label>
+							<div class="col-sm-9">
+								<!-- <input type="text" ng-model="calendar.data.end" class="form-control" id="dateTo"> -->
+								<md-datepicker 
+									ng-model="calendar.data.end" 
+               						md-placeholder="Enter date"
+               						md-min-date="minDay"
+								></md-datepicker>
+								<div uib-timepicker ng-model="ev.tohour" hour-step="1" minute-step="15" show-meridian="true"></div>
+							</div>
+						</div>
+						
+						<div class="form-group {{descriptionError}}">
+							<label class="col-sm-3 control-label" for="description" >Description:</label>
+							<div class="col-sm-9">
+								<textarea class="form-control" type="text" ng-model="calendar.data.description"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="project">Project:</label>
+							<div class="col-sm-9">
+								<select class="form-control" ng-model="calendar.data.projectId"
+									ng-options="project.id as project.name for project in projects"
+									ng-init="getProject()">
+								</select>							
+									 <!-- <input type="text" class="form-control" id="project" ng-model="calendar.data.projectId"> -->	
+							</div>
+						</div>
+						<div class="form-group">
+							    <label class="col-sm-3 control-label">Document</label>
+							    <div class="col-sm-9">
+							    	 <!-- <input type="file" ng-model="calendar.data.documentName"> -->
+							    	 <!-- <input type="text" class="form-control" id="document" ng-model="calendar.data.documentName"> -->
+							    	<!--  //<input  type="text" ng-model="" required="required"> -->
+							    	 <input type="file" ngf-select ng-model="attachFile" file-model="attachFile" name="file"
+										ngf-max-size="2MB" required> <i
+										ng-show="myForm.file.$error.maxSize">File too large
+										{{picFile.size / 1000000|number:1}}MB: max 2M</i>
+							    </div>	
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3"></label>
+							<div class="col-sm-9">
+								<button type="button" class="btn btn-primary" ng-click="saveCalendar();">Save</button>
+								<button type="button" class="btn btn-danger" ng-click="closeDialog();">Cancel</button>
+							</div>
+						</div> 
+						</form>
+					</div>
+					
+					
+				</div>
+			</div>
+

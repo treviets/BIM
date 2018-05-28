@@ -1,0 +1,7 @@
+			<div class="group col-lg-5 col-md-col-5 col-sm-12" ng-repeat="group in listGroup" ng-click="gotoGroupDetail(group);">
+				<div class="group-name">{{group.name}} <span class="pull-right notify-massage">{{newMassage['group_'+group.id]>0?newMassage['group_'+group.id]+' unread message':''}}</span></div>
+				<div class="group-description">{{group.description}}</div>
+				<div class="group-members"><span class="glyphicon glyphicon-user"></span>: {{group.members?group.members.length:0}} members</div>
+				<div class="group-creator">Create by: {{group.createdBy}}</div>
+				<div class="group-createDate">Create date: {{group.createdDate}}</div>
+			</div>

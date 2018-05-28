@@ -1,0 +1,118 @@
+<div class="col-lg-12">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div hidden="hidden" ng-init="getByIdProject($scope.projectId);"></div>
+			<div hidden="hidden" ng-init="getTaskResourcesOneProject();"></div>
+			<form class="form-horizontal" name="myForm" method="post"
+				enctype="multipart/form-data" accept-charset="UTF-8">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="form-group form-group-sm {{taskNameError}}">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Task name</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" ng-model="task.taskName">
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Sub of task</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="task.parentId"
+								ng-options="taskIn.wbs as taskIn.taskName for taskIn in tasks"
+								ng-init="getTasks()">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm {{taskResponsibleError}}">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Responsible</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="task.responsible" ng-options="projectresource.resourceId as (projectresource.resourceCode + '-' + projectresource.resourceName) for projectresource in projectresources">
+							</select>
+							<input type="checkbox" id="checkSendMail" ng-model="task.sendMail"/><span>Send Mail</span>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Completed
+							(%)</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" ng-model="task.completed">
+						</div>
+					</div>
+					<hr>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Attach
+							File</label>
+						<div class="form-group pull-left col-sm-8"
+							ng-model="task.attachFile">
+							<input type="file" ngf-select ng-model="task.attachFile"
+								file-model="task.attachFile" name="file" ngf-max-size="2MB">
+							<i ng-show="myForm.file.$error.maxSize">File too large
+								{{picFile.size / 1000000|number:1}}MB: max 20M</i>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Type</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="task.typeId"
+								ng-options="type.id as type.name for type in types"
+								ng-init="getTypes()">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Status</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="task.statusId"
+								ng-options="status.id as status.name for status in statuses"
+								ng-init="getStatuses()">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Priority</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="task.priorityId"
+								ng-options="priority.id as priority.name for priority in priorities"
+								ng-init="getPriorities()">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm {{taskDurationError}}">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Duration
+							(days)</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text"
+								ng-model="task.estimateTime" required="required">
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Start
+							date</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" ng-model="task.startDate"
+								readonly>
+							<md-datepicker ng-model="task.startDate"
+								md-placeholder="Enter date"></md-datepicker>
+							<span id="startDate"></span>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Due
+							date</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" ng-model="task.endDate"
+								readonly>
+							<span id="endDate"></span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-sm-7 control-label" for="formGroupInputSmall">Description</label>
+					<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 form-group-sm">
+						<textarea class="form-control" type="text" id="description" ng-model="task.description"></textarea>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

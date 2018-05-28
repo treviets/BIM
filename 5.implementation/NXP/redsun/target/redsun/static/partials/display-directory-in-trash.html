@@ -1,0 +1,58 @@
+<div ng-controller="docDirectoryUndoCtrl">
+	<form name="frmDirectory" novalidate>
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading clearfix">
+				<div class="panel-title pull-left"><span class="glyphicon glyphicon-modal-window"></span> {{'doc.file.form.trash.title' | translate}}</div>
+				<div class="btn-group pull-right">
+					<span ng-click="undoDirectory($event);" class="glyphicon glyphicon-share-alt" title="{{'doc.folder.form.button.undo.trash.tooltip' | translate}}"></span>
+					<span ng-click="showConfirmDel($event);" class="glyphicon glyphicon-trash" title="{{'doc.folder.form.button.delete.tooltip' | translate}}"></span>
+					<span class="glyphicon glyphicon-remove" ng-click="closeDialog()" data-toggle="tooltip" title="{{'doc.file.form.assign.button.close.tooltip' | translate}}"></span>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="alertMessageASR" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div layout="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+		            	</div>
+		            	<div class="col-md-6 col-sm-6 col-xs-12">
+		            		<span>{{'doc.file.form.trash.tbl.folder.path' | translate}}: {{treetrash02.currentNode.location}}</span>
+		            	</div>
+					</div>
+		            <div class="row vdivide">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div layout="row"><span>{{'doc.file.form.trash.left.panel' | translate}}</span></div>
+							<div
+			      				data-angular-treeview="true"
+			      				data-tree-id="treeuse01"
+			      				data-tree-model="availDirectories"
+			      				data-node-id="id"
+			      				data-node-label="name"
+			      				data-node-children="subFolders">
+			    			</div>
+   						</div>
+   						<div class="col-md-2 col-sm-2 col-xs-12">
+   						</div>
+   						<div class="col-md-6 col-sm-6 col-xs-12">
+   							<div layout="row"><span>{{'doc.file.form.trash.right.panel' | translate}}</span></div>
+							<div
+			      				data-angular-treeview="true"
+			      				data-tree-id="treetrash02"
+			      				data-tree-model="selectedAvailItems"
+			      				data-node-id="id"
+			      				data-node-label="name"
+			      				data-node-children="subFolders">
+			    			</div>
+   						</div>
+      				</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

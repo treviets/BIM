@@ -1,0 +1,33 @@
+-- Table: public.tasks
+
+-- DROP TABLE public.tasks;
+
+CREATE TABLE public.tasks
+(
+    id SERIAL PRIMARY KEY,
+    task_name text DEFAULT NOT NULL,
+    task_parent_id bigint NOT NULL,
+    level integer NOT NULL,
+    id_activities bigint NOT NULL,
+    assignee character varying,
+    task_owner character varying,
+    start_date timestamp with time zone,
+    end_date timestamp with time zone,
+    create_date timestamp with time zone NOT NULL,
+    update_date timestamp with time zone,
+    estimate_time double precision,
+    actually_time double precision,
+	id_project integer DEFAULT NULL,
+	id_status integer DEFAULT NULL,
+  id_type integer DEFAULT NULL,
+  due_date date DEFAULT NULL,
+  issuer bit(1) DEFAULT '0',
+   client_id integer DEFAULT NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.tasks
+    OWNER to postgres;

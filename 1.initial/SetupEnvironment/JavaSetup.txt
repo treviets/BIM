@@ -1,0 +1,38 @@
+Link: http://www.tutorialspoint.com/articles/how-to-install-java-with-apt-get-on-ubuntu-16-04
+Installing the Default JRE/JDK
+1. Open terminal and type:
+$ sudo apt-get install default-jre
+$ sudo apt-get install default-jdk
+
+/*
+Installing the Oracle JDK
+Should skip.
+$ sudo add-apt-repository ppa:webupd8team/java
+*/
+
+Update the packages list
+$ sudo apt-get update
+
+/*
+Managing Java
+used as a default
+Not need.
+$ sudo update-alternatives --config java
+*/
+
+/*
+Setting the JAVA_HOME Environment Variable
+Not need.
+$ sudo update-alternatives --config java
+Copy the path from your preferred installation
+*/
+
+And then open /etc/environment file
+$ sudo nano /etc/environment
+At the end of the file add the following lines
+JAVA_HOME="YOUR_JAVA_PATH"
+Ex: JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java"
+Save and exit the file, and reload it
+$ source /etc/environment
+Now test
+$ echo $JAVA_HOME

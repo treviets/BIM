@@ -1,0 +1,43 @@
+div.header-menu{
+	background-color: #2b3d4f;
+	clear: both;
+}
+span.menu-icon:before{
+	color: #FFF;
+	font-size: 20px;
+}
+div.page-title{
+	margin-top: 15px;
+	margin-bottom: 5px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 16px;
+}
+div.select-boxes-group{
+	background-color: #7d7f80;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+div.charts-group{
+	margin-top: 30px;
+}
+div.items{
+	background-color: #FFF;
+    margin-bottom: 10px;
+    height: 120px;
+    width: 23%;
+    margin-right: 2%;
+    border-radius: 8px;
+    box-shadow: 5px 5px 0px 1px #76a9db;
+}
+div.items .items-title{
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 13px;
+}
+div.items .items-values{
+	height: 40px;
+}
+div.items .items-values span{
+	font-size: 11px;
+}

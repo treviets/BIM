@@ -1,0 +1,41 @@
+
+Download xampp install
+https://www.apachefriends.org/download.html
+- Install to folder 'D:\xampp'.
+- Run -> start apache and mysql (root/empty).
+
+Dowload source projeQtor
+https://www.projeqtor.org/en/product-en/downloads
+- Unzip to folder 'D:\xampp\htdocs\'
+- Config php: Open file 'D:\xampp\php\php.ini' and set: 
+    register_globals = Off ; securite advise
+    magic_quotes_gpc = off ; security advise
+    max_input_vars = 4000 ; must be > 2000 for real work allocation screen
+	suhosin.post.max_vars = 4000 ; like max_input_vars when suhosin module is deployed
+    suhosin.request.max_vars 4000 ; like max_input_vars when suhosin module is deployed
+    max_execution_time = 30 ; minimum advised
+    memory_limit = 512M ; minimum advised for PDF generation
+    file_uploads = On ; to allow attachements and documents management
+	
+	extension=php_imap.dll
+	
+- Open browser and input url 'http://localhost/projeqtor' -> continue -> login 'admin/admin'.
+
+- To run again configuration screen, just delete "/tool/parametersLocation.php" file.
+
+Error:
+- projeqtor\view\parameter.php' at line (88):
+cause = A non well formed numeric value encountered
+-->> fix: change from '$longTextWidth=($displayWidth-30-300).'px';' to '$longTextWidth=($width-30-300).'px';'.
+
+- \projeqtor\view\objectDetail.php at lin (525):
+-->> fix: change from '$colWidth=round(($displayWidth) / $nbCol);' to '$colWidth=round(intval($displayWidth) / $nbCol);'.
+
+Install Navigate.
+- Connect to mysql in xampp: user is root/password is empty.
+
+Ignore:
+
+Download mysql 'mysql-installer-community'
+https://dev.mysql.com/downloads/windows/installer/
+

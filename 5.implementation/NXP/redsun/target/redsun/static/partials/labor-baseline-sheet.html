@@ -1,0 +1,42 @@
+<div ng-controller="pmReBaselineCtrl" class="ng-scope">
+	<div class="panel panel-default">		
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">{{'report_pm_labor_sheet_header' | translate}}</h3>
+			<div class="pull-right">
+				<span ng-click="getProjectLaborBaseline();" class="glyphicon glyphicon-eye-open" title="{{'report_pm_costs_menu_show' | translate}}"></span>
+				<span ng-click="exportMaterialUsageExcel('labor-sheet', 'exLaborSheet');" class="glyphicon glyphicon-export" title="{{'report_pm_costs_menu_export_excel' | translate}}"></span> &nbsp;&nbsp;&nbsp;
+				<!-- <span ng-click="exitDetailFullscreen('task-cost-overview');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span><span ng-click="detailFullscreen('task-cost-overview');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span> -->
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<label class="control-label" for="formGroupInputSmall">{{'project_baseline_form_type' | translate}}</label>
+				<select class="form-control" ng-model="baseline" ng-options="(b.name + b.baselineDate) for b in baselines" ng-change="getBaseLineId(baseline);">
+					<option value='' disabled selected="selected"><spring:message code="report.project"/></option>
+		      	</select>
+			</div>
+			<br />
+			<div>
+				<label class="control-label" for="formGroupInputSmall">{{'project_baseline_form_description' | translate}}</label>
+				<textarea class="form-control" ng-model="description" placeholder="{{baseline.description}}"></textarea>
+			</div>
+			<br />
+			<div id="exLaborSheet" class="row">		
+				<table class="table table-bordered">
+					<tr>
+						<th>{{'report_pm_labor_sheet_code' | translate}}</th>
+						<th>{{'report_pm_labor_sheet_name' | translate}}</th>
+						<th>{{'report_pm_material_sheet_enum' | translate}}</th>
+						<th>{{'report_pm_labor_sheet_salary' | translate}}</th>
+					</tr>
+					<tr ng-repeat = "l in labors">
+						<td>{{l.resourceCode}}</td>
+						<td>{{l.resourceName}}</td>
+						<td>{{l.quantity}}</td>
+						<td>{{l.salary}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

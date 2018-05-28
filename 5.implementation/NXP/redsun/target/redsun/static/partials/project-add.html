@@ -1,0 +1,119 @@
+	<div class="col-lg-12">
+		<div class="panel-body">
+		    <form class="form-horizontal">
+		        <div class="col-md-6 col-sm-6 col-xs-12">
+		        	<div class="form-group form-group-sm {{projectCodeError}} ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Code
+						<span class="text-color-red">(*)</span>
+						</label>
+						<div class="col-sm-8">
+		    				<input class="form-control" type="text" ng-model="project.code" required="required" maxlength="20" placeholder="maxlength is 20">
+		  				</div>
+					</div>
+					<div class="form-group form-group-sm {{projectNameError}} ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Name
+						<span class="text-color-red">(*)</span>
+						</label>
+						<div class="col-sm-8">
+		    				<input class="form-control" type="text" ng-model="project.name" required="required">
+		  				</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Sub project of</label>
+						<div class="col-sm-8">	
+							<select class="form-control" ng-init="getParentsProject()" ng-model="project.parentId" ng-options="parentProject.id as parentProject.name for parentProject in projects">
+							<option></option>
+				      		</select>
+			      		</div>
+			      	</div>
+					 <div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Duration (days)</label>
+						<div class="col-sm-8">
+		    				<input class="form-control" type="number" ng-model="project.duration">
+		    				<input type="checkbox" id="checkSunday" ng-model="project.setSunday"/><span>Work sunday</span>
+		  				</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Start date</label>
+						<div class="col-sm-8 checkbox-inline">
+		    				<md-datepicker ng-model="project.startDate" md-placeholder="Enter date"></md-datepicker>
+		  				</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">End date</label>
+						<div class="col-sm-8 checkbox-inline">
+							<input class="form-control" type="text" ng-model="project.endDate" readonly >
+		  				</div>
+					</div>
+					 </div>
+		        <div class="col-md-6 col-sm-6 col-xs-12">	
+		       
+					
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Type</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-init="getTypes()" ng-model="project.typeId" ng-options="type.id as type.name for type in types">
+				      		</select>
+			      		</div>
+			      	</div>
+		        	<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Status</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="project.statusId"
+								ng-options="status.id as status.name for status in statuses" ng-init="getStatuses()">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm {{projectCustomerError}}">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Customer</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="project.customerId" ng-options="customer.id as customer.name for customer in clients" ng-init="getCustomers()">
+				      		</select>
+			      		</div>
+			      	</div>
+			      	<div class="form-group form-group-sm ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Location
+						</label>
+						<div class="col-sm-8">
+		    				<input class="form-control" type="text" ng-model="project.location" required="required">
+		  				</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Amount (VND)
+						</label>
+						<div class="col-sm-8">
+		    				<input class="form-control" type="text" ng-model="project.amount" />
+		    				<span id="currency-no-fractions"> {{project.amount | currency:"":0}} </span>
+		  				</div>
+					</div>	
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Payment delay</label>
+						<div class="col-sm-8">
+				      		<input class="form-control" type="text" ng-model="project.howManyDayPaymentDelay" />
+		  				</div>
+					</div>	
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Done</label>
+						<div class="col-sm-8 checkbox-inline">
+		    				<md-datepicker ng-model="project.doneDate" md-placeholder="Enter date"></md-datepicker>
+		  				</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">Closed</label>
+						<div class="col-sm-8 checkbox-inline">
+		    				<md-datepicker ng-model="project.closedDate" md-placeholder="Enter date"></md-datepicker>
+		  				</div>
+					</div>
+		        </div>
+		        <div class="col-md-12 col-sm-12 col-xs-12">
+		        	<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Description</label>
+						<div class="col-sm-10">
+		    				<textarea class="form-control" rows="4" ng-model="project.description"></textarea>
+		  				</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+		

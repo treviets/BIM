@@ -1,0 +1,47 @@
+<div ng-controller="pmReMaterialUsageCtrl" class="ng-scope">
+	<div class="panel panel-default" ng-init="initLanguage()">		
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">{{'report_pm_material_provide_sheet_header' | translate}}</h3>
+			<div class="pull-right">
+				<span ng-click="initMaterialprovided()" class="glyphicon glyphicon-eye-open" title="{{'report_pm_costs_menu_show' | translate}}"></span>
+				<span ng-click="exportMaterialUsageExcel('planning-material-sheet', 'exMaterialSheet');" class="glyphicon glyphicon-export" title="{{'report_pm_costs_menu_export_excel' | translate}}"></span> &nbsp;&nbsp;&nbsp;
+				<!-- <span ng-click="exitDetailFullscreen('task-cost-overview');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span><span ng-click="detailFullscreen('task-cost-overview');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span> -->
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-8">
+		 			<md-datepicker ng-model="fromDate" ng-change="changeFromDate(fromDate)" md-placeholder="{{'report_pm_costs_fromdate' | translate}}"></md-datepicker>
+				</div>
+				<div class="col-sm-8">
+			 		<md-datepicker ng-model="toDate" ng-change="changeToDate(toDate)" md-placeholder="{{'report_pm_costs_todate' | translate}}"></md-datepicker>
+				</div>
+			</div>
+			<br />
+			<div id="exMaterialSheet" class="row">		
+				<table class="table table-bordered">
+					<tr>
+						<th>{{'report_pm_material_sheet_code' | translate}}</th>
+						<th>{{'report_pm_material_sheet_name' | translate}}</th>
+						<th>{{'report_pm_material_sheet_unit' | translate}}</th>
+						<th>{{'report_pm_material_sheet_enum' | translate}}</th>
+						<th>{{'report_pm_material_sheet_anum' | translate}}</th>
+						<th>{{'report_pm_material_sheet_task' | translate}}</th>
+						<th>{{'report_pm_material_sheet_start_date' | translate}}</th>
+						<th>{{'report_pm_material_sheet_end_date' | translate}}</th>
+					</tr>
+					<tr ng-repeat = "m in materials">
+						<td>{{m.code}}</td>
+						<td>{{m.resourceName}}</td>
+						<td>{{m.unitName}}</td>
+						<td>{{m.estimateQuantity}}</td>
+						<td>{{m.actuallyQuantity}}</td>
+						<td>{{m.taskName}}</td>
+						<td>{{m.startDate}}</td>
+						<td>{{m.endDate}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

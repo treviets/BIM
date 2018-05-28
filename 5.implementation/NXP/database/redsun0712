@@ -1,0 +1,26 @@
+
+DROP TABLE public.clients;
+
+CREATE TABLE public.clients
+(
+  id integer NOT NULL DEFAULT nextval('customers_id_seq'::regclass),
+  name character varying(20),
+  address character varying(200),
+  phone character varying(20),
+  no character varying(15),
+  CONSTRAINT customers_pkey PRIMARY KEY (id),
+  CONSTRAINT customers_no_key UNIQUE (no)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.clients
+  OWNER TO postgres;
+
+
+INSERT INTO public.clients (name, address, phone, no) VALUES(
+'Nam Xuân Phong',	'45, Nguyên Khac Nhu',	'0989990017',	'00001')
+
+
+INSERT INTO public.clients (name, address, phone, no) VALUES(
+'Truong d?i h?c Van Lang',	'1., sô 1, khu cho phú lâm',	'09389990017',	'00002')

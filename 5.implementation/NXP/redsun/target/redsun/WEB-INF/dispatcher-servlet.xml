@@ -1,0 +1,89 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/context
+		 				http://www.springframework.org/schema/context/spring-context-3.0.xsd
+						http://www.springframework.org/schema/mvc
+		 				http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		 				http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+
+	<mvc:annotation-driven />
+	<sec:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="mail.bimexpert.vn" />
+        <property name="port" value="25" />
+        <property name="username" value="redsun@bimexpert.vn" />
+        <property name="password" value="Admin-123" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">false</prop>
+            </props>
+        </property>
+    </bean>
+    
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+	<bean id="permissionEveluator" class="com.redsun.service.auth.CustomPermissionEvaluator">
+	</bean>
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+  	</mvc:interceptors>
+	
+	<context:component-scan base-package="com.redsun" />
+	<context:component-scan base-package="com.redsun.service.auth"/>
+	
+	<mvc:resources location="/static/" mapping="/static/**" />
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/redsun" />
+		<property name="user" value="postgres" />
+		<property name="password" value="Admin-123" />
+		<!-- for NXP-->
+		<!--<property name="jdbcUrl" value="jdbc:postgresql://10.10.10.210:5432/redsun" />
+		<property name="user" value="postgres" />
+		<property name="password" value="postgres" />-->
+		
+		
+		
+		<!-- Basic Pool Configuration Required -->
+		<property name="maxStatements" value="200" />
+		<property name="initialPoolSize" value="10" />
+		<property name="maxPoolSize" value="200" />
+		<property name="minPoolSize" value="10" />
+		<property name="acquireIncrement" value="10" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		scope="singleton">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	    <property name="basename" value="WEB-INF/messages/sites"/>
+	    <property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+</beans>

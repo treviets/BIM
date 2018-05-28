@@ -1,0 +1,19 @@
+Linux: ubuntu-16.04.1-desktop-amd64.iso
+Share folder for Linux in VMWare:
+Link: http://theholmesoffice.com/how-to-share-folders-between-windows-and-ubuntu-using-vmware-player/
+1. Create a folder in your Windows named "ShareData".
+2. Shut down Ubuntu
+3. WM -> Settings -> Option -> Share Folders -> Add folder above -> Always enabled.
+4. Close WM Settings.
+5. Start Ubuntu.
+6. Open terminal and type: vmware-hgfsclient
+7. WM -> WMware Tools Install (this include CD disk)
+8. Extract file "VMwareTools-10.0.10-4301679.tar.gz' to folder 'tmp': choose "other location" and navigate to 'tmp' folder and select 'all files' and click 'Attract' button.
+9. Open Terminla and type:
+cd /tmp/vmware-tools-distrib
+sudo ./vmware-install.pl
+enter for default.
+
+Wait and done.
+10. Open folder for check: /mnt/hgfs
+Note: If for upgrate then type: sudo /usr/bin/vmware-uninstall-tools.pl

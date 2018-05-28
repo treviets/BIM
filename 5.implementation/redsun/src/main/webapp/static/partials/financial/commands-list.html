@@ -1,0 +1,121 @@
+
+<div ng-controller="commandController" ng-init="initList()">
+	<!-- panel -->
+	<div class="panel panel-default">
+		<!-- panel-heading -->
+		<div class="panel-heading">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<span ng-if="permission.projectRole.orderPermission.indexOf(2)>=0" ng-click="add();" class="glyphicon glyphicon-plus" title="click here to add new order"></span>
+ 					<span ng-click="exportOrder();" class="glyphicon glyphicon-export" title="click here to export these orders"></span>&nbsp;&nbsp;&nbsp;
+				</div>
+			</div>
+			<!-- filter	 -->
+			<div class="row">
+				
+				<!-- filter by name -->
+				<div class="col-md-2">
+					<input type="text" ng-model="search.name" class="inpput-sm" placeholder="name" />
+				</div>
+				<!-- filter by projectName -->
+				<div class="col-md-2">
+					<input type="text" ng-model="search.projectName" class="inpput-sm" placeholder="project" />
+				</div>
+				<!-- filter by commandTypeName -->
+				<div class="col-md-2">
+					<input type="text" ng-model="search.commandTypeName" class="inpput-sm" placeholder="command type"/>
+				</div>
+				<!-- filter by description -->
+				<div class="col-md-2">
+					<input type="text" ng-model="search.description" class="inpput-sm" placeholder="description" />
+				</div>
+				<!-- filter by statusName -->
+				<div class="col-md-2">
+					<input type="text" ng-model="search.statusName" class="inpput-sm" placeholder="status" />
+				</div>
+				<!-- filter button -->
+				<div class="col-md-2">
+					<button type="button" class="btn" ng-click="getsForPageAndFilter(1)" data-toggle="tooltip" title='search command'><span class="glyphicon glyphicon-search"></span></button>
+				</div>
+				
+			</div>
+		
+			<!-- top actions -->
+			<div class="row">
+				<div class="pull-left">
+					<dir-pagination-controls
+						   max-size="8"
+						   direction-links="true"
+						   boundary-links="true" 
+						   on-page-change="getsForPageAndFilter(newPageNumber)" >
+					</dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	
+		<!-- list of content -->
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th ng-click="sortBy('name')">Name
+								<span ng-show="sortKey === 'name'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+							</th>
+							<th ng-click="sortBy('projectName')">Project
+								<span ng-show="sortKey === 'projectName'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+							</th>
+							<th ng-click="sortBy('commandTypeName')">Type
+								<span ng-show="sortKey === 'commandTypeName'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+							</th>
+							<th ng-click="sortBy('description')">Description
+								<span ng-show="sortKey === 'description'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+							</th>
+							<th ng-click="sortBy('statusName')">Status
+								<span ng-show="sortKey === 'statusName'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+							</th>
+							<th/>
+							<th/>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-show="command.length">
+							<td colspan="4" style="text-align: center;">Loading...</td>
+						</tr>
+						<tr dir-paginate="item in commands | orderBy:sortKey:reverse | itemsPerPage:itemsPerPage" total-items="totalCount">
+							<td>{{item.name}}</td>
+							<td>{{item.projectName}}</td>
+							<td>{{item.commandTypeName}}</td>
+							<td data-toggle="tooltip" title="{{(!item.description.length || item.description.length < 50) ? '' : item.description}}">{{item.description | limitTo: 50}} {{(!item.description.length || item.description.length < 50) ? '' : '...'}}</td>
+							<td>{{item.statusName}}</td>
+							<td>
+								<div ng-click="edit(item.id)">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</div>
+							</td>
+							<td>
+								<div ng-click="delete(item.id)">
+									<span class="glyphicon glyphicon-trash"></span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+			
+				<div class="pull-left">
+					<dir-pagination-controls
+						   max-size="8"
+						   direction-links="true"
+						   boundary-links="true" 
+						   on-page-change="getsForPageAndFilter(newPageNumber)" >
+					</dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

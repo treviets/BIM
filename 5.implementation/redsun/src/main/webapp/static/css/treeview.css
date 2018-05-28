@@ -1,0 +1,12 @@
+.mygrid-wrapper-div {
+    border: ridge;
+    overflow: scroll;
+    height: 400px;
+}
+
+.gi-2x{font-size: 19px;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+.tbl-font{font-size: 10px;}

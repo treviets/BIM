@@ -1,0 +1,20 @@
+1. Coding & Testing:
+- Linux: ubuntu-16.04.1-desktop-amd64.iso
+- Java JDK 8
+- Tomcat 8
+https://tomcat.apache.org/download-80.cgi#8.5.8
+- PostPreSQL
+https://www.postgresql.org/download/windows/
+- MongoDB
+- Redis
+- ElasticSearch
+- Webstorm
+- SVN server
+- Eclipse
+https://www.eclipse.org/downloads/download.php?file=/oomph/epp/neon/R1/eclipse-inst-win64.exe
+- Mavent
+
+2. Manage:
+- Redmine
+- Bugzilla
+- Dotproject (WAMP, XAMPP)

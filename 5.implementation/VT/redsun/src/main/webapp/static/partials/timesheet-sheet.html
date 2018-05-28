@@ -1,0 +1,52 @@
+<div ng-controller="pmReMaterialUsageCtrl" class="ng-scope">
+	<div class="panel panel-default" ng-init="initLanguage()">		
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">{{'report_pm_timesheet_sheet_header' | translate}}</h3>
+			<div class="pull-right">
+				<span ng-click="initTimeSheetInProject()" class="glyphicon glyphicon-eye-open" title="{{'report_pm_costs_menu_show' | translate}}"></span>
+				<span ng-click="exportMaterialUsageExcel('timesheet-sheet', 'exTimeSheet');" class="glyphicon glyphicon-export" title="{{'report_pm_costs_menu_export_excel' | translate}}"></span> &nbsp;&nbsp;&nbsp;
+				<!-- <span ng-click="exitDetailFullscreen('task-cost-overview');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span><span ng-click="detailFullscreen('task-cost-overview');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span> -->
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">{{'report_pm_costs_year' | translate}}</label>
+						<div class="col-sm-8">
+					 		<input type="number" ng-model="y" min="2017" max="9999" ng-change="changeYear(y)">
+						</div>
+					</div>
+					<br />
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">{{'report_pm_costs_month' | translate}}</label>
+						<div class="col-sm-8">
+					 		<input type="number" ng-model="m" min="0" max="12" ng-change="changeMonth(m)">
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div id="exTimeSheet" class="tbl-font">		
+				<table class="table table-bordered">
+					<tr>
+						<th>{{'report_pm_labor_sheet_code' | translate}}</th>
+						<th>{{'report_pm_labor_sheet_name' | translate}}</th>
+						<!-- <th>{{'report_pm_labor_sheet_working_day' | translate}}</th> -->
+						<th>{{'report_pm_labor_sheet_over_time' | translate}}</th>
+						<!-- <th>{{'report_pm_labor_sheet_duration' | translate}}</th> -->
+						<th ng-repeat="d in days">{{d}}</th>
+					</tr>
+					<tr ng-repeat = "ts in timeSheetUi">
+						<td>{{ts.code}}</td>
+						<td>{{ts.name}}</td>
+						<!--<td>{{ts.startDate}}</td> -->
+						<td>{{ts.overtime}}</td>
+						<!--<td>{{ts.totalActuallyTime}}</td> -->
+						<td ng-repeat="w in ts.working">{{w.effort}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

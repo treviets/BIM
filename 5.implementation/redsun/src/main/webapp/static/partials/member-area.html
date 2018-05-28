@@ -1,0 +1,19 @@
+			  			<div class="panel-body">
+			  			<div class="ms-list"    >
+								<table class="table table-striped table-hover table-bordered"  ng-init = "getResources();">
+									<tbody>
+										<thead>
+											<tr>
+								  				<th>Name</th>
+								  				<th>Quantity</th>
+				  							</tr>
+			  							</thead>
+										<tr ng-repeat="resource in resources">
+											<td><input type="checkbox" id = "check" ng-model="resource.isSelected"/> {{resource.name}}</td>
+											<td><input type="number" class="form-control" ng-model="resource.quantity" placeholder="Quantity"/></td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+			  			</div>

@@ -1,0 +1,24 @@
+			  			<div class="panel-body">
+				  			<div class="ms-list"  ng-init = "getProjectMaterials();">
+								<table class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Unit</th>
+											<th>Maximum</th>
+											<th>Quantity</th>
+										</tr>
+									</thead>
+									<tbody>
+									<tr ng-repeat="projectmaterial in projectmaterials">
+										<td class = 'totext'>{{projectmaterial.materialName}} <span class="tooltiptext">Description: {{projectmaterial.description}}</span></td>
+										<td>{{projectmaterial.unitName}}</td>
+										<td><input type="number" class="form-control{{quantityError}}" ng-model="projectmaterial.quantity" readonly="readonly"/></td>
+										<td>
+											<input type="number" class="form-control" ng-model="projectmaterial.quan"/>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+			  			</div>

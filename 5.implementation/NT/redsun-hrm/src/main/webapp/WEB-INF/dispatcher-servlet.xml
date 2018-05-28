@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/context
+		 				http://www.springframework.org/schema/context/spring-context-3.0.xsd
+						http://www.springframework.org/schema/mvc
+		 				http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<mvc:annotation-driven />
+	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="mail.bimexpert.vn" />
+        <property name="port" value="25" />
+        <property name="username" value="redsun@bimexpert.vn" />
+        <property name="password" value="Admin-123" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">false</prop>
+            </props>
+        </property>
+    </bean> -->
+    
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+  	</mvc:interceptors>
+  	<mvc:resources mapping="/images/**" location="file:C:/REDSUN/hrm/images/"/>
+	<context:component-scan base-package="com.redsun" />
+
+</beans>

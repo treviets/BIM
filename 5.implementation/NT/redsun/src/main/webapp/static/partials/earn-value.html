@@ -1,0 +1,59 @@
+<div ng-controller="pmReEVMCtrl" class="ng-scope">
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">{{'report_pm_evm_header' | translate}}</h3>
+			<div class="pull-right">
+				<span ng-click="initCostExpenses();" class="glyphicon glyphicon-eye-open" title="{{'report_pm_costs_menu_show' | translate}}"></span>
+				<span ng-click="exportCostExpPDF('task_cost_per_month', 'pdfCE');" class="glyphicon glyphicon-export" title="{{'report_pm_costs_menu_export_pdf' | translate}}"></span> &nbsp;&nbsp;&nbsp;
+				<!-- <span ng-click="exitDetailFullscreen(report.file_name);" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span><span ng-click="detailFullscreen(report.file_name);" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span> -->
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<div class="form-group form-group-sm">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">{{'report_pm_costs_year' | translate}}</label>
+						<div class="col-sm-8">
+					 		<input type="number" ng-model="y" min="2017" max="9999" ng-change="changeYear(y)">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="pdfCE" class="row">
+				<div class="col-sm-6">
+					<canvas id="line" class="chart chart-line"
+			  			chart-data="dataCostExpMultiLine" chart-labels="labelCostExpMultiLine" chart-series="seriesCostExpMultiLine" chart-options="optiopCostExpMultiLine" chart-legend="true" chart-colors="colorCostExpMultiLine">
+					</canvas>
+				</div>
+				<div class="col-sm-6">
+					<canvas id="varline" class="chart chart-line"
+			  			chart-data="dataVarianceMultiLine" chart-labels="labelVarianceLine" chart-series="seriesVarianceMultiLine" chart-options="optiopVarianceMultiLine" chart-legend="true" chart-colors="colorVarianceMultiLine">
+					</canvas> 
+				</div>
+				<br />
+				<br />
+				<div class="col-sm-6">
+					<canvas id="indexline" class="chart chart-line"
+			  			chart-data="dataIndexMultiLine" chart-labels="labelIndexLine" chart-series="seriesIndexMultiLine" chart-options="optiopIndexMultiLine" chart-legend="true" chart-colors="colorIndexMultiLine">
+					</canvas> 
+				</div>
+				<br />
+				<br />
+				<table class="table table-bordered">
+					<tr>
+						<th>{{'report_pm_costs_month' | translate}}</th>
+						<th>{{'report_pm_costs_acc' | translate}}</th>
+						<th>{{'report_pm_costs_pc' | translate}}</th>
+						<th>{{'report_pm_costs_bcwp' | translate}}</th>
+					</tr>
+					<tr ng-repeat = "c in CostExpenses">
+						<td>{{c.monthly}}</td>
+						<td>{{c.totalActuallyCost}}</td>
+						<td>{{c.totalPlanningCost}}</td>
+						<td>{{c.bcwp}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>	

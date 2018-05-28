@@ -1,0 +1,49 @@
+<div ng-controller="pmReExpenseCtrl" class="ng-scope">
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">{{'report_pm_costs_resource_header' | translate}}</h3>
+			<div class="pull-right">
+				<span ng-click="initRSC();" class="glyphicon glyphicon-eye-open" title="{{'report_pm_costs_menu_show' | translate}}"></span>
+				<span ng-click="exportResourceCostPDF('resource_cost_overview', 'pdfRCO');" class="glyphicon glyphicon-export" title="{{'report_pm_costs_menu_export_pdf' | translate}}"></span> &nbsp;&nbsp;&nbsp;
+				<span ng-click="exitDetailFullscreen('tasks-area');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span><span ng-click="detailFullscreen('tasks-area');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span>
+			</div>
+		</div>
+		<div class="panel-body">	
+			<div class="col-sm-8">
+		 		<md-datepicker ng-model="fromDate" ng-change="changeFromDate(fromDate)" md-placeholder="{{'report_pm_costs_fromdate' | translate}}"></md-datepicker>
+			</div>
+			<div class="col-sm-8">
+		 		<md-datepicker ng-model="toDate" ng-change="changeToDate(toDate)" md-placeholder="{{'report_pm_costs_todate' | translate}}"></md-datepicker>
+			</div>
+			
+			<!-- CallAndTender -->
+			<div class="row">
+				<div class="col-sm-12">
+					<canvas id="bar" class="chart chart-bar"
+			  			chart-data="dataCallAndTender" chart-labels="labelCallAndTender" chart-series="seriesCallAndTender" chart-options="optionCallAndTender" chart-legend="true" chart-colors="colorCallAndTender">
+					</canvas>
+				</div>
+ 			</div>
+
+			<!-- BillAndPayment -->
+			<div class="row">
+				<div class="col-sm-12">
+					<canvas id="bar" class="chart chart-bar"
+			  			chart-data="dataBillAndPayment" chart-labels="labelBillAndPayment" chart-series="seriesBillAndPayment" chart-options="optionBillAndPayment" chart-legend="true" chart-colors="colorBillAndPayment">
+					</canvas>
+				</div>
+ 			</div>
+
+			<!-- QuotationAndOrder -->
+			<div class="row">
+				<div class="col-sm-12">
+					<canvas id="bar" class="chart chart-bar"
+			  			chart-data="dataQuotationAndOrder" chart-labels="labelQuotationAndOrder" chart-series="seriesQuotationAndOrder" chart-options="optionQuotationAndOrder" chart-legend="true" chart-colors="colorQuotationAndOrder">
+					</canvas>
+				</div>
+ 			</div>
+
+
+		</div>
+	</div>
+</div>	

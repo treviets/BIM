@@ -1,0 +1,24 @@
+<!--Start Comment Modal content-->
+		<div class="panel panel-default" ng-controller="TabController" id="documentModelDialog" ng-init="getProjectDocument();">
+		 	<div class="panel-body">
+			     <!-- Modal content-->	
+			      	<div class="col-sm-12 input-document">
+			      		<p class="dialog-title">Add comment for step</p>
+			      		<div class="row input-row">
+			      			<label class="input-title">Reject reason</label>
+			      			<input class="form-control input-text" ng-model="rejectReason" type="text" placeholder="Enter reject reason">
+			      		</div>
+			      		<div class="row input-row">
+			      			<label class="input-title">Reject Description</label>
+			      			<input class="form-control input-text" ng-model="rejectDescription" type="text" placeholder="Enter reason reason description">
+			      		</div>
+			      	</div>
+			      	
+			       	<div class="col-sm-12 text-center">
+			         	<button type="button" class="btn btn-default" ng-click="closeRejectDialog();">Close</button>
+				       	<button type="button" class="btn btn-danger" ng-click="activeRejectFunction();">Reject</button>
+			       	</div>
+			    
+		    </div>
+		</div>
+<!-- End Comment Modal content-->

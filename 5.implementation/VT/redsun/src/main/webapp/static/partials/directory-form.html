@@ -1,0 +1,81 @@
+<div>
+
+	<form name="frmDirectory" novalidate>
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">Directory</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title='Save' ng-if="permission.projectRole.folder.indexOf(2)>=0">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Alert Message -->
+			<div id="alertMessageForm" class="alert" style="display: none">
+				<strong>{{alertMessageForm}}</strong>
+			</div>
+			
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- Info -->
+					<div class="col-sm-12">
+						
+						<div class="form-horizontal">
+							
+							<!-- projectId -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6 text-sm-right" for="txtprojectId">Project</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmDirectory.txtprojectId.$touched || frmDirectory.txtprojectId.$dirty || frmDirty) && frmDirectory.txtprojectId.$invalid }">
+									<select class="form-control" type="text" id="txtprojectId" name="txtprojectId" ng-model="directory.projectId" ng-options="project.id as project.name for project in projects"></select>
+									<div class="input-group-addon" ng-show="frmDirectory.txtprojectId.$invalid">
+										<validation-tooltip target="txtprojectId">
+											<ul class="list-unstyled">
+												<li validation-message ng-if="$field.$error.required">This is a required field. </li>
+											</ul>
+										</validation-tooltip>
+									</div>
+								</div>
+							</div>
+					
+							<!-- name -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6 text-sm-right" for="txtname">Name</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmDirectory.txtname.$touched || frmDirectory.txtname.$dirty || frmDirty) && frmDirectory.txtname.$invalid }">
+									<input class="form-control" type="text" id="txtname" name="txtname" ng-model="directory.name" required maxlength="50"></input>
+									<div class="input-group-addon" ng-show="frmDirectory.txtname.$invalid">
+										<validation-tooltip target="txtname">
+											<ul class="list-unstyled">
+												<li validation-message ng-if="$field.$error.required">This is a required field. </li>
+											</ul>
+										</validation-tooltip>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">Directory</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title='Save' ng-if="permission.projectRole.folder.indexOf(2)>=0">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

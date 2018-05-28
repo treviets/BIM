@@ -1,0 +1,26 @@
+			  			<div class="panel-body">
+				  			<div class="ms-list"  ng-init = "getProjectEquipments();">
+								<table class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Unit</th>
+											<th>Maximum</th>
+											<th>Quantity</th>
+										</tr>
+									</thead>
+									<tbody>
+									<tr ng-repeat="projectequipment in projectequipments">
+										<td class = 'totext'>{{projectequipment.equipmentName}} <span class="tooltiptext">Description: {{projectequipment.description}}</span></td>
+										<td>{{projectequipment.unit}}</td>
+										<td>
+											<input type="number" class="form-control" ng-model="projectequipment.quantity" readonly="readonly"/>
+										</td>
+										<td>
+											<input type="number" class="form-control" ng-model="projectequipment.quan"/>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+			  			</div>

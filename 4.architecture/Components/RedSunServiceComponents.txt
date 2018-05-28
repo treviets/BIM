@@ -1,0 +1,10 @@
+
+* Red sun service:
+- Entities: Data object.
+- Dao: Data access object interface.
+- Mapper: row reader.
+- DaoImpl: Data access object implement
+- Service: Call DAL to get data interface.
+- ServiceImpl: Call DAL to get data
+- Controller: user service to process data.
+- APIHelper: call private api.

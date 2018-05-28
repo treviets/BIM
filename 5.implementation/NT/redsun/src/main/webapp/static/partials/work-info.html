@@ -1,0 +1,69 @@
+<div class="tab-pane panel panel-success ng-scope active">
+	<div class="panel-heading clearfix active">
+		<h3 class="panel-title pull-left">Work info</h3>
+		<div class="pull-right">
+			<span class="glyphicon glyphicon-remove" role="button"
+				ng-click="closeDialog()"></span>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="panel-body">
+			<form class="form-horizontal">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="form-group form-group-sm  ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">
+							Position: </label>
+						<div class="col-sm-8">
+							<select class="form-control"></select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm  ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">
+							Department: </label>
+						<div class="col-sm-8">
+							<select class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm  ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">
+							Date join Company: </label>
+						<div class="col-sm-8">
+							<md-datepicker ng-model="date" md-placeholder="Enter date"></md-datepicker>
+						</div>
+					</div>
+						
+				</div>
+
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="form-group form-group-sm  ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">
+							Current position: </label>
+						<div class="col-sm-8">
+							<select class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-group-sm  ">
+						<label class="col-sm-4 control-label" for="formGroupInputSmall">
+							Current project: </label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text">
+						</div>
+					</div>
+					
+			</form>
+		</div>
+	</div>
+	<div style="text-align: center; margin-bottom: 20px">
+		<button type="button" class="btn btn-default" ng-click="closeDialog()">
+			<span class="glyphicon glyphicon-remove"></span> Close
+		</button>
+		<button type="button" class="btn btn-info" ng-click="closeDialog()">
+			<span class="glyphicon glyphicon-floppy-save"></span> Save
+		</button>
+
+	</div>
+</div>
+
+

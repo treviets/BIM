@@ -1,0 +1,22 @@
+						<div class="panel-heading clearfix">
+			    			<h3 class="panel-title pull-left">Risk</h3>
+					    	<div class="pull-right">
+					    		<span ng-if="permission.projectRole.riskPermission.indexOf(1)>=0" ng-click="addRisk();" class="glyphicon glyphicon-plus" title="click here to add new risk"></span>
+			      				<span ng-click="exportRisk();" class="glyphicon glyphicon-export" title="click here to export these Risk"></span>&nbsp;&nbsp;&nbsp;
+			      			</div>
+					    	
+			  			</div>
+			  			<div class="panel-body">
+			  				<div class="table-responsive" >
+								<table class="table table-striped table-hover table-bordered">
+									<tbody>
+										<tr ng-repeat="risk in risks track by $index" >
+											<td ng-click="gotoRiskDetailPage(this.risk);">{{risk.name}}</td>
+											<td>
+												<span title="Remove this risk" class="glyphicon glyphicon-trash" ng-if="checkPermission('PM_4')" ng-click="deleteRisk(risk.id,$index);"></span></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+			  			</div>

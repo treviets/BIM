@@ -1,0 +1,55 @@
+<div class="panel-heading clearfix">
+ 			<h3 class="panel-title pull-left">Financial</h3>
+   	<div class="pull-right">
+   		<span ng-click="exitDetailFullscreen('financial-area');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="exit fullscreen"></span><span ng-click="detailFullscreen('financial-area');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="fullscreen"></span>
+   	</div>
+</div>
+<!-- Content -->
+<div class="panel-body">
+	<ul class="nav nav-tabs">
+		<li class="active" ng-if="permission.projectRole.call4tenderPermission.indexOf(1)>=0">
+			<a href="#callForTender" data-toggle="tab">Call for tender</a>
+		</li>
+		<li ng-if="permission.projectRole.tenderPermission.indexOf(1)>=0">
+			<a href="#tender" data-toggle="tab">Tender</a>
+		</li>
+		<li ng-if="permission.projectRole.projectExpensePermission.indexOf(1)>=0">
+			<a href="#projectExpense" data-toggle="tab">Project expense</a>
+		</li>
+		 <li ng-if="permission.projectRole.individualExpensePermission.indexOf(1)>=0">
+			<a href="#individualExpense" data-toggle="tab">Individual expense</a>
+		</li>
+		<li ng-if="permission.projectRole.quotationPermission.indexOf(1)>=0">
+			<a href="#quotation" data-toggle="tab">Quotation</a>
+		</li>
+		<li ng-if="permission.projectRole.orderPermission.indexOf(1)>=0">
+			<a href="#order" data-toggle="tab">Order</a>
+		</li>
+		<li ng-if="permission.projectRole.billPermission.indexOf(1)>=0">
+			<a href="#bill" data-toggle="tab">Bill</a>
+		</li>
+		<li ng-if="permission.projectRole.paymentPermission.indexOf(1)>=0">
+			<a href="#payment" data-toggle="tab">Payment</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<br/>
+		<div ng-if="permission.projectRole.call4tenderPermission.indexOf(1)>=0" id="callForTender" class="tab-pane active" ng-include="'/redsun/static/partials/financial/call-for-tenders.html'">
+		</div>
+		<div ng-if="permission.projectRole.tenderPermission.indexOf(1)>=0" id="tender" class="tab-pane" ng-include="'/redsun/static/partials/financial/tenders.html'">
+		</div>
+		<div ng-if="permission.projectRole.projectExpensePermission.indexOf(1)>=0" id="projectExpense" class="tab-pane" ng-include="'/redsun/static/partials/financial/project-expenses-list.html'">
+		</div>
+		<div ng-if="permission.projectRole.individualExpensePermission.indexOf(1)>=0" id="individualExpense" class="tab-pane" ng-include="'/redsun/static/partials/financial/individual-expenses-list.html'">
+		</div>
+		<div ng-if="permission.projectRole.quotationPermission.indexOf(1)>=0" id="quotation" class="tab-pane" ng-include="'/redsun/static/partials/financial/quotation-list.html'">
+		</div>
+		<div ng-if="permission.projectRole.orderPermission.indexOf(1)>=0" id="order" class="tab-pane" ng-include="'/redsun/static/partials/financial/commands-list.html'">
+		</div>
+		<div ng-if="permission.projectRole.billPermission.indexOf(1)>=0" id="bill" class="tab-pane" ng-include="'/redsun/static/partials/financial/bill-list.html'">
+		</div>
+		<div ng-if="permission.projectRole.paymentPermission.indexOf(1)>=0" id="payment" class="tab-pane"  ng-include="'/redsun/static/partials/financial/payments-list.html'">
+		</div>
+	</div>
+</div>
+

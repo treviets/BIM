@@ -1,0 +1,250 @@
+<div class="col-lg-12 panel panel-success" data-spy="scroll"
+	ng-controller="callForTenderController_Detail">
+	<div class="row panel-heading">
+		<div class="col-sm-6 text-left">Call For Tender List</div>
+	</div>
+	<div id="success-alert" class="row alert alert-info alert-dismissable"
+		ng-show="msgSuccess != undefined || msgSuccess != null">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Success!</strong> {{msgSuccess}}
+	</div>
+	<div id="error-alert" class="row alert alert-danger alert-dismissable"
+		ng-show="msgFail != undefined || msgFail != null">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Warning!</strong> {{msgFail}}
+	</div>
+	<div class="row panel-body">
+		<div class="col-sm-6">
+			<a class="accordion-toggle" data-toggle="collapse"
+				data-parent="#accordion"> Description </a>
+			<div>
+				<form class="form-horizontal">
+					<div class="form-group" ng-show="tender.id != null">
+						<label class="control-label col-sm-4" for="name">Id</label> <label
+							class="control-label col-sm-8" for="name"
+							style="text-align: left">{{tender.id}}</label>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="tender_name"
+								ng-model="tender.name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Type</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="type"
+								ng-options="t.name for t in types"></select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Project</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="project"
+								ng-options="p.name for p in projects"></select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Amount</label>
+						<div class="col-sm-8">
+							<input type="number" class="form-control" id="name"
+								ng-model="tender.maxAmount">
+						</div>
+					</div>
+					<div class="form-group" ng-show="false">
+						<label class="control-label col-sm-4" for="name">Date</label>
+						<div class="col-sm-8">
+							<p class="input-group">
+								<input type="text" class="form-control"
+									uib-datepicker-popup="{{format}}"
+									ng-model="tender.expectedTenderDateTime"
+									is-open="expectedTenderDateTime.opened"
+									datepicker-options="dateOptions" ng-required="true"
+									close-text="Close" alt-input-formats="altInputFormats" /> <span
+									class="input-group-btn">
+									<button type="button" class="btn btn-default"
+										ng-click="open('expectedTenderDateTime')">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+							</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Description</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="5"
+								ng-model="tender.description"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Business
+							Requirements</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="5"
+								ng-model="tender.businessRequirements"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Technical
+							Requirements</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="5"
+								ng-model="tender.technicalRequirements"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="name">Other
+							Requirements (organization, financial)</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="5"
+								ng-model="tender.otherRequirements"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="row">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#accordion"> Treatment </a>
+				<div>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="name">Status</label>
+							<div class="col-sm-8">
+								<select class="form-control" ng-model="status"
+									ng-options="st.name for st in statuses"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="name">Responsible</label>
+							<div class="col-sm-8">
+								<select class="form-control" ng-model="user"
+									ng-options="u.name for u in users"></select>
+							</div>
+						</div>
+						<div class="form-group" ng-show="false">
+							<label class="control-label col-sm-4" for="name">Date</label>
+							<div class="col-sm-8">
+								<p class="input-group">
+									<input type="text" class="form-control"
+										uib-datepicker-popup="{{format}}"
+										ng-model="tender.sendDateTime" is-open="sendDateTime.opened"
+										datepicker-options="dateOptions" ng-required="true"
+										close-text="Close" alt-input-formats="altInputFormats" /> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default"
+											ng-click="open('sendDateTime')">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</p>
+							</div>
+						</div>
+						<div class="form-group" ng-show="false">
+							<label class="control-label col-sm-4" for="name">Handled</label>
+							<div class="col-sm-1" style="padding-top: 8px;">
+								<input type="checkbox" ng-model="tender.handled"
+									ng-true-value="1" ng-false-value="0"
+									ng-checked="tender.handled">
+							</div>
+							<div class="col-sm-7">
+								<p class="input-group">
+									<input type="text" class="form-control"
+										uib-datepicker-popup="{{format}}"
+										ng-model="tender.handledDate" is-open="handledDate.opened"
+										datepicker-options="dateOptions" ng-required="true"
+										close-text="Close" alt-input-formats="altInputFormats" /> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default"
+											ng-click="open('handledDate')">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="name">Done</label>
+							<div class="col-sm-1" style="padding-top: 8px;">
+								<input type="checkbox" ng-model="tender.done" ng-true-value="1"
+									ng-false-value="0" ng-checked="tender.done == 1">
+							</div>
+							<div class="col-sm-7">
+								<p class="input-group">
+									<input type="text" class="form-control"
+										uib-datepicker-popup="{{format}}" ng-model="tender.doneDate"
+										is-open="doneDate.opened" datepicker-options="dateOptions"
+										ng-required="true" close-text="Close"
+										alt-input-formats="altInputFormats" /> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default"
+											ng-click="open('doneDate')">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="name">Closed</label>
+							<div class="col-sm-1" style="padding-top: 8px;">
+								<input type="checkbox" ng-model="tender.idle" ng-true-value="1"
+									ng-false-value="0" ng-checked="tender.idle == 1">
+							</div>
+							<div class="col-sm-7">
+								<p class="input-group">
+									<input type="text" class="form-control"
+										uib-datepicker-popup="{{format}}" ng-model="tender.idleDate"
+										is-open="idleDate.opened" datepicker-options="dateOptions"
+										ng-required="true" close-text="Close"
+										alt-input-formats="altInputFormats" /> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default"
+											ng-click="open('idleDate')">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="name">Cancelled</label>
+							<div class="col-sm-1" style="padding-top: 8px;">
+								<input type="checkbox" ng-model="tender.cancelled"
+									ng-true-value="1" ng-false-value="0"
+									ng-checked="tender.cancelled == 1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="name">Result</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" rows="5" ng-model="tender.result"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div ng-include="'/redsun/static/partials/financial/attachment.html'">
+			</div>
+		</div>
+		<!--HA: move button to bottom-->
+		<div class="col-sm-12 text-center">
+			<button type="button" class="btn btn-info" ng-click="update()">
+				<span class="glyphicon glyphicon-floppy-save"></span> Save
+			</button>
+			<button type="button" class="btn btn-info"
+				ng-show="tender.id != null || tender.id != undefined"
+				ng-click="clearModel()">
+				<span class="glyphicon glyphicon-file"></span> New
+			</button>
+			<button type="button" class="btn btn-info"
+				ng-show="tender.id != null || tender.id != undefined"
+				ng-click="delete(tender.id)">
+				<span class="glyphicon glyphicon-remove-sign"></span> Delete
+			</button>
+		</div>
+	</div>
+</div>

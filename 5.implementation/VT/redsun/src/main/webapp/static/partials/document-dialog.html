@@ -1,0 +1,55 @@
+<!--Start Document Modal content-->
+		<div class="panel panel-default" ng-controller="TabController" id="documentModelDialog" ng-init="getProjectDocument();">
+		 	<div class="panel-body">
+			     <!-- Modal content-->
+			     <div class="">
+			  			<div class="modal-header">
+			      			<h4 class="modal-title">Document Management</h4>
+			      		</div>
+			      		<div class="modal-body">
+			        		<p class="dialog-title">List of created documents</p>
+			        		<table class="table table-striped table-hover table-bordered">
+								<tbody>
+									<tr>
+										<th class="document_action"></th>
+										<th>Document Name</th>
+										<th>Description</th>
+										<th class="document_action"></th>
+									
+									</tr>
+									<tr ng-repeat="projectdocument in projectdocuments">
+										<td class="text-center">
+											<input type="checkbox" id="docCheck" checked="true"/>
+										</td>
+										<td>{{ projectdocument.documentName }}</td>
+										<td>{{ projectdocument.documentDescription }}</td>
+										<td class="text-center">
+										<a href="" ng-if="checkPermission('BPMN_4')" ng-click="deleteDocumentStep(projectdocument)">
+					          				<span class="glyphicon glyphicon-remove" style="font-size: 25px;color: #d9534f;"></span>
+					      				</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+			      		</div>
+			      	<div class="col-sm-12 input-document">
+			      		<p class="dialog-title">Create documents for step</p>
+			      		<div class="row input-row">
+			      			<label class="input-title">Document Name</label>
+			      			<input class="form-control input-text" ng-model="documentName" type="text" placeholder="Enter document name">
+			      		</div>
+			      		<div class="row input-row">
+			      			<label class="input-title">Document Description</label>
+			      			<input class="form-control input-text" ng-model="documentDescription" type="text" placeholder="Enter document description">
+			      		</div>
+						<button ng-if="checkPermission('BPMN_2') || checkPermission('BPMN_3')"  ng-click="createProjectDocument();" type="button" class="btn btn-success btn-create-document">Create</button>     	
+			      	</div>
+			      	
+			       	<div class="col-sm-12 text-center">
+			         	<button type="button" class="btn btn-default" ng-click="closeDocumentDialog();">
+			         		<span></span>Close</button>
+			       	</div>
+			     </div>
+		    </div>
+		</div>
+		<!-- End Document Modal content-->

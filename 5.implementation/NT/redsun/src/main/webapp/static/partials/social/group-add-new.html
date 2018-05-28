@@ -1,0 +1,48 @@
+
+<div class="panel-heading clearfix">
+	<h3 class="panel-title pull-left"><strong>Create new group</strong></h3>
+</div>
+<form name="frmDirectory" novalidate>
+		<div class="panel panel-default">
+			<!-- Alert Message -->
+			<div class="text-center">
+				<span class="error">{{groupCreateError}}</span>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- Info -->
+					<div class="col-sm-12">
+						
+						<div class="form-horizontal">
+							<!-- name -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-md-12 col-lg-12 col-sm-12 col-xs-12 text-sm-right" for="txtname">Group Name</label>
+								<div class="input-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+									<input class="form-control" type="text" id="groupName" name="groupName" ng-model="group.name" required maxlength="100" placeholder="Input the group name"></input>
+								</div>
+							</div>
+							<!-- name -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-md-12 col-lg-12 col-sm-12 col-xs-12 text-sm-right" for="txtname">Group Description</label>
+								<div class="input-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+									<textarea class="form-control" name="groupDescription" ng-model="group.description" maxlength="200" placeholder="Input the group description"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+				<div class="form-group form-group-sm">
+					<div class="col-sm-12 text-center">
+						<button type="button" class="btn btn-default" ng-click="closeDialog();">Close</button>
+						<button type="button" class="btn btn-info" ng-click="saveNewGroup();">
+							<span class="glyphicon glyphicon-floppy-save"></span>Save
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>

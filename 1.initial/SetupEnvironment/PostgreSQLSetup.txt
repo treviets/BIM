@@ -1,0 +1,59 @@
+Link: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+
+(default user: postgres)
+sudo -i -u postgres
+psql
+
+exit:
+postgres=# \q
+
+Create a New Role (user account 'postgres'):
+postgres@server:~$ createuser --interactive
+or
+sudo -u postgres createuser --interactive
+enter role name as postgres
+
+help for create user.
+man createuser
+
+Create a New Database
+postgres@server:~$ createdb postgres
+or
+sudo -u postgres createdb postgres
+
+Close and re-open terminal.
+Create a user
+$ sudo adduser postgres
+
+connect to the database
+$ sudo -i -u postgres
+$ psql
+or
+$ sudo -u ubuntu16psql
+
+/*
+Change database:
+$ psql -d postgres
+*/
+
+Current connection information
+bim=# \conninfo
+
+Install Admin GUI
+Link: https://help.ubuntu.com/community/PostgreSQL
+sudo apt-get install pgadmin3
+sudo -u postgres psql postgres
+\password postgres
+
+set password: 123
+
+Open GUI:
+pgadmin3
+
+Create connection:
+host: 127.0.0.1
+Mainternant DB: postgres
+username: postgres
+password: 123

@@ -1,0 +1,32 @@
+<!-- Content -->
+<div class="panel-body">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#task-add" data-toggle="tab">Task</a>
+		</li>
+		<li><a href="#hr-resource" data-toggle="tab">HR Resource</a></li>
+		<li ng-if="!isDesignManagement"><a href="#equipment" data-toggle="tab">Equipment</a></li>
+		<li ng-if="!isDesignManagement"><a href="#material" data-toggle="tab">Material</a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="task-add" class="tab-pane active" ng-include="'/redsun/static/partials/task-detail.html'"></div>
+		<div id="hr-resource" class="tab-pane" ng-include="'/redsun/static/partials/task-edit-personnel-area.html'"></div>
+		<div ng-if="!isDesignManagement" id="equipment" class="tab-pane" ng-include="'/redsun/static/partials/task-edit-equipment-area.html'">
+		</div>
+		<div ng-if="!isDesignManagement" id="material" class="tab-pane" ng-include="'/redsun/static/partials/task-edit-material-area.html'">
+		</div>
+	</div>
+	<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+		<div class="form-group form-group-sm">
+			<div class="col-sm-12 text-center">
+			   	<button type="button" class="btn btn-danger" ng-if="permission.projectRole.taskPermission.indexOf(4)>=0 && checkPermission('PM_4')"  ng-click = "isTrashTask();">
+				   	<span class="glyphicon glyphicon-trash"></span>Delete
+				</button>
+				<button type="button" class="btn btn-default" ng-click="closeDialog();"><span></span>Close</button>
+				<button ng-if="permission.projectRole.taskPermission.indexOf(3)>=0  && checkPermission('PM_3')" type="button" class="btn btn-info" ng-click="saveTask();">
+					<span class="glyphicon glyphicon-floppy-save"> </span>Save
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+

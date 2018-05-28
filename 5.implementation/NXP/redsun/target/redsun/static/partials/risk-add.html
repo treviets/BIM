@@ -1,0 +1,134 @@
+	<h3 class="page-title">{{pageTitle}}</h3>
+	<div class="col-lg-12" >
+		<div class="panel panel-default">
+			<div class="panel-heading clearfix">
+				<h3 class="panel-title pull-left">
+					Risk
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal">
+				 	<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="form-group form-group-sm">
+							<label class="col-sm-2 control-label" for="formGroupInputSmall">Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" ng-model="risk.name" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<label class="col-sm-2 control-label" for="formGroupInputSmall">Description</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" 
+									ng-model="risk.description" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0"></textarea>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Impact Cost</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" ng-model="risk.impactCost" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</div>
+					</div>
+					
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Cause</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" ng-model="risk.cause" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</div>
+					</div>
+					
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Result</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" ng-model="risk.result" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</div>
+					</div>	
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Type</label>
+						<div class="col-sm-10">
+							<select class="form-control" ng-model="risk.riskTypeId"
+								ng-options="type.id as type.name for type in types" ng-init="getTypes()" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+							</select>
+						</div>
+					</div>
+				<div class="form-group form-group-sm">
+					<label class="col-sm-2 control-label" for="formGroupInputSmall">Likelihood</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="risk.likelihoodId"
+							ng-options="likelihood.id as likelihood.name for likelihood in likelihoods" ng-init="getLikelihoods()" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</select>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-sm-2 control-label" for="formGroupInputSmall">Severity</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="risk.severityId"
+							ng-options="severity.id as severity.name for severity in severities" ng-init="getSeverities()" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</select>
+					</div>
+				</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+					
+				<div class="form-group form-group-sm">
+					<label class="col-sm-2 control-label" for="formGroupInputSmall">Criticality</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="risk.criticalityId"
+							ng-options="criticality.id as criticality.name for criticality in criticalities" ng-init=getCriticalities() ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</select>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-sm-2 control-label" for="formGroupInputSmall">Status</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="risk.statusId"
+							ng-options="status.id as status.name for status in statuses" ng-init="getStatuses()" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</select>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-sm-2 control-label" for="formGroupInputSmall">Priority</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="risk.priorityId"
+							ng-options="priority.id as priority.name for priority in priorities" ng-init="getPriority()" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0">
+						</select>
+					</div>
+				</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Planning end date</label>
+						<div class="col-sm-10">
+						<input class="form-control" type="text" ng-model="risk.planningEndDate" readonly >
+							<md-datepicker ng-model="risk.planningEndDate"
+								md-placeholder="Enter date" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0"></md-datepicker>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Actual end date</label>
+						<div class="col-sm-10">
+						<input class="form-control" type="text" ng-model="risk.actualEndDate" readonly >
+							<md-datepicker ng-model="risk.actualEndDate"
+								md-placeholder="Enter date" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0"></md-datepicker>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="formGroupInputSmall">Done Date</label>
+						<div class="col-sm-10">
+						<input class="form-control" type="text" ng-model="risk.doneDate" readonly >
+							<md-datepicker ng-model="risk.doneDate"
+								md-placeholder="Enter date" ng-disabled="permission.projectRole.riskPermission.indexOf(3)<0"></md-datepicker>
+						</div>
+					</div>
+					</div>
+					<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+						<div class="form-group form-group-sm">
+							<div class="col-sm-12 text-center">
+							<button type="button" class="btn btn-default" ng-click="closeDialog();">
+							<span> </span>Close</button> 
+							<button type="button" class="btn btn-info" ng-click="saveRisk();" ng-if="permission.projectRole.riskPermission.indexOf(3)>=0">
+							<span class="glyphicon glyphicon-floppy-save"></span>Save</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

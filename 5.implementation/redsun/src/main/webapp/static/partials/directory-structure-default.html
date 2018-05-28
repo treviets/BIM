@@ -1,0 +1,70 @@
+<div ng-controller="docDefDirectoryCtrl" ng-init="getDefaultDirectory()">
+	<form name="frmDirectory" novalidate >
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading clearfix">
+				<div class="panel-title pull-left"><span class="glyphicon glyphicon-cog"></span> {{'doc.file.form.setting.default.title' | translate}}</div>
+				<div class="btn-group pull-right">
+					<span ng-click="addDef();" class="glyphicon glyphicon-plus" title="{{'doc.folder.form.button.add.tooltip' | translate}}"></span>
+					<span ng-click="editDef();" class="glyphicon glyphicon-pencil" title="{{'doc.folder.form.button.edit.tooltip' | translate}}"></span>
+					<span class="glyphicon glyphicon-trash" ng-click="showConfirmDel()" data-toggle="tooltip" title="{{'doc.folder.form.button.delete.tooltip' | translate}}"></span>
+					<span class="glyphicon glyphicon-remove" ng-click="closeDialog()" data-toggle="tooltip" title="{{'doc.file.form.assign.button.close.tooltip' | translate}}"></span>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="alertMessageASR" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="col-sm-12">
+		            <div class="row vdivide">
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<div
+			      				data-angular-treeview="true"
+			      				data-tree-id="treedef"
+			      				data-tree-model="defaultDirectories"
+			      				data-node-id="id"
+			      				data-node-label="name"
+			      				data-node-children="subFolders">
+			    			</div>
+   						</div>
+   						<div class="col-md-5 col-sm-5 col-xs-12">
+   							<!-- Alert Message -->
+							<div id="alertDefMessageForm" class="alert" style="display: none">
+								<strong>{{alertMessageForm}}</strong>
+							</div>
+        					<div class="form-group col-sm-12" ng-if="visEdit>0">
+								<span>{{'doc.file.form.trash.tbl.folder.name' | translate}}</span>
+								<div class="input-group">
+									<div class="input-group col-sm-12">
+										<input class="form-control" type="text" id="txtname" name="txtname" ng-model="directory.name" required maxlength="150"></input>
+										<span class="input-group-btn">
+											<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title='Save'>
+												<span class="glyphicon glyphicon-floppy-disk"></span>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-sm-12" ng-if="visAdd>0">
+								<span>{{'doc.file.form.trash.tbl.folder.name' | translate}}</span>
+								<div class="input-group">
+									<div class="input-group col-sm-12">
+										<input class="form-control" type="text" id="txtname" name="txtname" ng-model="directory.name" required maxlength="150"></input>
+										<span class="input-group-btn">
+											<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title='Save'>
+												<span class="glyphicon glyphicon-floppy-disk"></span>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+        				</div>
+      				</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

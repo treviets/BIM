@@ -1,0 +1,11 @@
+ALTER TABLE project_resources ADD salary numeric(12, 2);
+ALTER TABLE project_materials ADD salary numeric(12, 2);
+ALTER TABLE prject_equipments ADD salary numeric(12, 2);
+ALTER TABLE tasks ALTER COLUMN responsible TYPE  integer;
+ALTER TABLE task_resource_daily_tracking ADD salary numeric(12, 2);
+ALTER TABLE task_material_daily_tracking ADD net_price numeric(12, 2);
+ALTER TABLE task_material_daily_tracking ADD price numeric(12, 2);
+ALTER TABLE equipments ADD net_price numeric(12, 2);
+ALTER TABLE equipments ALTER COLUMN unit TYPE  integer;
+ALTER TABLE materials ADD net_price numeric(12, 2);
+ALTER TABLE materials ALTER COLUMN unit TYPE  integer;

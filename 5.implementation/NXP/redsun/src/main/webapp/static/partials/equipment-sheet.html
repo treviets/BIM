@@ -1,0 +1,32 @@
+<div ng-controller="pmReMaterialUsageCtrl" class="ng-scope">
+	<div class="panel panel-default" ng-init="initLanguage()">		
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">{{'report_pm_equipment_sheet_header' | translate}}</h3>
+			<div class="pull-right">
+				<span ng-click="initEquipmentInProject();" class="glyphicon glyphicon-eye-open" title="{{'report_pm_costs_menu_show' | translate}}"></span>
+				<span ng-click="exportMaterialUsageExcel('equipment-sheet', 'exEquipmentSheet');" class="glyphicon glyphicon-export" title="{{'report_pm_costs_menu_export_excel' | translate}}"></span> &nbsp;&nbsp;&nbsp;
+				<!-- <span ng-click="exitDetailFullscreen('task-cost-overview');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span><span ng-click="detailFullscreen('task-cost-overview');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="{{'report_pm_costs_menu_maximize' | translate}}"></span> -->
+			</div>
+		</div>
+		<div class="panel-body">
+			<div id="exEquipmentSheet" class="row">		
+				<table class="table table-bordered">
+					<tr>
+						<th>{{'report_pm_equipment_sheet_code' | translate}}</th>
+						<th>{{'report_pm_equipment_sheet_name' | translate}}</th>
+						<th>{{'report_pm_material_sheet_enum' | translate}}</th>
+						<th>{{'report_pm_material_sheet_net_price' | translate}}</th>
+						<th>{{'report_pm_material_sheet_price' | translate}}</th>
+					</tr>
+					<tr ng-repeat = "e in equipments">
+						<td>{{e.code}}</td>
+						<td>{{e.resourceName}}</td>
+						<td>{{e.estimateQuantity}}</td>
+						<td>{{e.totalPlanningCost}}</td>
+						<td>{{e.totalActuallyCost}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

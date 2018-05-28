@@ -1,0 +1,25 @@
+<div class="panel-heading clearfix">
+ 			<h3 class="panel-title pull-left">Communicator</h3>
+   	<div class="pull-right">
+   		<span ng-click="exitDetailFullscreen('social-area');" class="glyphicon glyphicon-resize-small" ng-if="isDetailFullscreen" title="exit fullscreen"></span><span ng-click="detailFullscreen('social-area');" class="glyphicon glyphicon-fullscreen" ng-if="!isDetailFullscreen" title="fullscreen"></span>
+   	</div>
+</div>
+<!-- Content -->
+<div class="panel-body">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#groups" data-toggle="tab">Groups</a>
+		</li>
+		<li ng-if="isGroupDetail">
+			<a href="#fileSharing" data-toggle="tab">File Sharing</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<br/>
+		<div id="groups" class="tab-pane active" ng-include="'/redsun/static/partials/social/groups-area.html'">
+		</div>
+		<div  ng-if="isGroupDetail" id="fileSharing" class="tab-pane" ng-include="'/redsun/static/partials/social/file-sharing.html'">
+		</div>
+	</div>
+</div>
+
